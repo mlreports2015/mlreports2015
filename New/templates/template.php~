@@ -1,0 +1,102 @@
+<?php
+
+function head()
+{
+	echo "<div align=center>
+<img src='templates/title.jpg' width='100%' />
+</div>
+
+<div align='left' style='position:absolute; top:20px; left:20px;'>
+<img src='templates/headd.png' />
+</div>
+
+<div align='left' style='position:absolute; top:10px; left:30px;'>
+<img src='templates/mlr.png' />
+</div>";
+}
+
+function menu1()
+{
+	echo "<div style='position:absolute; top:30px; right: 50px;color:#870524'>
+		<img src='templates/top2.gif' />
+		<div style='position:relative; top:-60px; left:20px'>
+			<a class='b1' href='home.php'>Home</a> | 
+			<a class='b1' href='admin.php'>Add Case</a> | 
+			<a class='b1' href='avail.php'>Availability</a> | 
+			<a class='b1' href='comp.php'>Complete</a> | 
+			<a class='b1' href='incomp.php'>Incomplete</a> | 
+			<a class='b1' href='search.php'>Search</a> | 
+			<a class='b1' href='log.php'>Log Out</a> | 
+		</div>
+		<div style='position:absolute; top:20px; right:50px;'>
+			<form action=qsearch.php method=post>
+				<input type='text' size='15' value='Surname Search' id='qs' onfocus=\"document.getElementById('qs').value='';\" onblur=\"document.getElementById('qs').value='Surname Search';\" />
+				<INPUT type='submit' style=\"background-image : url('templates/lookup.gif'); background-repeat:no-repeat;width:23px;\" value='' />
+			</form>
+		</div>
+	</div>";
+}
+
+
+function menu2()
+{
+	echo "<div style='position:absolute; top:120px; left: 260px;color:#870524'>
+		<img src='templates/top2.gif' />
+		<div style='position:relative; top:-60px; left:20px'>
+			<a class='b1' href='det.php'>Details</a> | 
+			<a class='b1' href='pmh.php'>PMH</a> | 
+			<a class='b1' href='accid.php'>Accident</a> | 
+			<a class='b1' href='symp.php'>Symptoms</a> | 
+			<a class='b1' href='treat.php'>Treatment</a> | 
+			<a class='b1' href='life.php'>Life</a> | 
+			<a class='b1' href='exam.php'>Examination</a> | 
+			<a class='b1' href='sum.php'>Summary</a> | 
+			<a class='b1' href='prog.php'>Prognosis</a> | 
+			<a class='b1' href='repgen.php'>Report</a> | 
+		</div>
+	</div>";
+}
+
+function menu3()
+{
+	echo "<div style='position:absolute; top:120px; left: 260px;color:#870524'>
+		<img src='templates/top2.gif' />
+		<div style='position:relative; top:-60px; left:20px'>
+			<a class='b2' >Details</a> | 
+			<a class='b2' >PMH</a> | 
+			<a class='b2' >Accident</a> | 
+			<a class='b2' >Symptoms</a> | 
+			<a class='b2' >Treatment</a> | 
+			<a class='b2' >Life</a> | 
+			<a class='b2' >Examination</a> | 
+			<a class='b2' >Summary</a> | 
+			<a class='b2' >Prognosis</a> | 
+			<a class='b2' >Report</a> | 
+		</div>
+	</div>";
+}
+
+function proc()
+{
+	echo "<html>
+<body style=\"background-color:#c7fd9c;\" marginheight=0 marginwidth=0 topmargin=0 leftmargin=0>
+<div align=center>
+<img src='templates/title.jpg' width='100%' />
+</div>
+
+<div align='center'>
+<div style='position:relative; top:-200px; left:0px;'>
+<img src='templates/headd.png' />
+</div>
+
+<div style='position:relative; top:-400px; left:-5px;'>
+<img src='templates/mlr.png' />
+</div>
+</div>
+
+<div align=center style='position:relative; top:-200px;'>
+<img src='templates/ajax-loader.gif' />
+</div>
+</body>
+</html>";
+}

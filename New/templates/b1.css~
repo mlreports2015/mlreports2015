@@ -1,0 +1,19 @@
+.b1:link
+{
+	color:#fff;
+}
+
+.b1
+{
+	color:#fff;
+}
+
+.b1:active
+{
+	color:#c7fd9c;
+}
+
+.b1:hover
+{
+	color:#A44;
+}

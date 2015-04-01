@@ -1,0 +1,548 @@
+<?php
+
+session_start();
+
+include "inc.php";
+
+
+if (!isset($_SESSION['id']))
+{
+	rdrctr("Login Details Incorrect","index.html");
+}
+else
+{
+	include 'dcon.php';
+	$id=$_GET['cid'];
+?>
+<HEAD>
+<TITLE>MLR Case</TITLE>
+
+<SCRIPT language='JavaScript' type='text/javascript' src='Scripts/index.js'></SCRIPT>
+
+<link href="CSS/calender.css" rel="stylesheet" type="text/css">
+<script language="javaScript" type="text/javascript" src="Scripts/calender_date_picker.js"></script>
+
+<link href="CSS/det.css" rel="stylesheet" type="text/css">
+<!--<script language="javaScript" type="text/javascript" src="Scripts/index.js"></script>
+<link href="CSS/calender.css" rel="stylesheet" type="text/css">
+<script language="javaScript" type="text/javascript" src="Scripts/calender_date_picker.js"></script>";-->
+
+</HEAD>
+
+<BODY background="images/back.png" onload="init('d','de');">
+
+<DIV style="background-image : url('images/fe.png'); background-repeat : no-repeat; width:1024px; float:right;">
+<IMG align="middle" src="images/title3.png" />
+<IMG align="middle" src="images/det.png" style="margin-left : 700px;" />
+</DIV>
+
+<DIV style="float:right;right:20px;width:100%;">
+<A href=home.php>Home</A> |
+<A href=search.php>All Cases</A> |
+<A href=search.php>General Search</A> |
+<A href=search.php>Incomplete Cases</A> |
+<A href=search.php>Complete Cases</A> |
+</DIV>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+</HEAD>
+
+
+<?
+$org=$_SESSION['o'];
+$s="select * from claimant where cid=".$_GET['cid']." and org='$org'";
+$q=mysql_query($s);
+$r=mysql_fetch_array($q);
+?>
+
+<CENTER><H1><? echo "ML".$r['cid'];?></H1></CENTER>
+
+<CENTER>
+<DIV align="center">
+
+<A href="det.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Details</A> | 
+
+<A href="pmh.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">PMH</A> | 
+
+<A href="accid.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Accident</A> | 
+
+<A href="effect.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Symptoms</A> | 
+
+<A href="treat.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Treatment</A> | 
+
+<A href="life.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Life</A> | 
+
+<A href="exam.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>"> Examination </A> | 
+
+<A href="summary.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Summary</A> | 
+
+<A href="prog.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Prognosis </A> | 
+
+<A href="repgen.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Report</A>
+
+<Div style="width:100%"></DIV>
+</A>
+</CENTER>
+
+<br>
+
+
+<CENTER><H1>Details</H1></CENTER>
+
+<FORM action="Process/det2.php" method="POST">
+
+<DIV style="float:left; width:33%;border-style:solid;border-width:2px;border-color:#5555DD;">
+
+<TABLE align=center>
+
+<TR>
+<TH colspan='2' align='center'>Claimant Details</TH>
+</TR>
+<TR>
+<TD>Title</TD>
+
+<TD><select name=tt>
+<option <? if (strcmp($r['ct'],"Mr.")==0) echo "selected='selected'"; ?> value=Mr.>Mr.</option>
+<option <? if (strcmp($r['ct'],"Ms.")==0) echo "selected='selected'"; ?> value=Ms.>Ms.</option>
+<option <? if (strcmp($r['ct'],"Miss")==0) echo "selected='selected'"; ?> value=Miss>Miss</option>
+<option <? if (strcmp($r['ct'],"Mrs")==0) echo "selected='selected'"; ?> value=Mrs>Mrs</option>
+<option <? if (strcmp($r['ct'],"Dr.")==0) echo "selected='selected'"; ?> value=Dr.>Dr.</option>
+<option <? if (strcmp($r['ct'],"Master")==0) echo "selected='selected'"; ?> value=Master>Master</option>
+</select></TD>
+
+</Tr>
+<tr>
+<TD>First Name</TD>
+<TD><INPUT value="<? echo $r['cfn']; ?> " type='text' name='cf'></TD>
+</tr>
+<tr>
+<TD>Last Name</TD>
+<TD><INPUT value="<? echo $r['cln']; ?> " type='text' name='cl'></TD>
+</TR>
+<TR>
+<TD>Gender</TD>
+<TD><SELECT name="gen"><OPTION <? if (strcmp($r['gen'],'m')==0) echo "selected='selected'"; ?> value="m">Male</OPTION><OPTION <? if (strcmp($r['gen'],'m')!=0) echo "selected='selected'"; ?> value="f">Female</OPTION></SELECT></TD>
+</TR>
+<tr>
+<TD>Date of Birth</TD>
+<TD><INPUT value="<? echo date('d-m-Y',strtotime($r['cdb'])); ?> " size=16px type='text' name=dob id='dob'><a href='#' onClick="setYears(1900, 2011); showCalender(this, 'dob');"><img src='images/calender.png' border=0></a><a href='#' onClick="document.getElementById('dob').value='';"><img src='images/clear.png' border=0></a></TD>
+</TR>
+<tr>
+<TD>Date of Accident</TD>
+<TD><INPUT value="<? echo date('d-m-Y',strtotime($r['cda'])); ?> " size=16px type='text' name=doa id='doa'><a href='#' onClick="setYears(1900, 2011); showCalender(this, 'doa');"><img src='images/calender.png' border=0></a><a href='#' onClick="document.getElementById('doa').value='';"><img src='images/clear.png' border=0></a></TD>
+</TR>
+<tr>
+<TD>Date of Examination</TD>
+<TD><INPUT value="<? echo date('d-m-Y',strtotime($r['cde'])); ?> " size=16px type='text' name=doe id='doe'><a href='#' onClick="setYears(1900, 2011); showCalender(this, 'doe');"><img src='images/calender.png' border=0></a><a href='#' onClick="document.getElementById('doe').value='';"><img src='images/clear.png' border=0></a></TD>
+</TR>
+<tr>
+<TD>Contact-1</TD>
+<TD><INPUT value="<? echo $r['cc1']; ?> " type='text' name='cc1'></TD>
+</TR>
+<tr>
+<TD>Contact-2</TD>
+<TD><INPUT value="<? echo $r['cc2']; ?> " type='text' name='cc2'></TD>
+</TR>
+<tr>
+<TD>Address Line 1</TD>
+<TD><INPUT value="<? echo $r['ca1']; ?> " type='text' name='ca1'></TD>
+</TR>
+<tr>
+<TD>Address Line 2</TD>
+<TD><INPUT value="<? echo $r['ca2']; ?> " type='text' name='ca2'></TD>
+</TR>
+<tr>
+<TD>Post Code</TD>
+<TD><INPUT value="<? echo $r['cp']; ?> " type='text' name='cp'></TD>
+</TR>
+<tr>
+<TD>Email</TD>
+<TD><INPUT value="<? echo $r['ce']; ?> " type='text' name='ce'></TD>
+</TR>
+</TABLE>
+
+</DIV>
+
+
+<DIV style="float:left;width:33%;border-style:solid;border-width:2px;border-color:#5555DD;">
+
+<TABLE>
+<tr>
+<TH>Consulting Room</TH>
+</tr>
+<tr>
+<TD>Select Existing/New</TD><td><SELECT onchange='togleac();' name=c id=acm><OPTION value='0' onclick='showccr();'>Current Clinics</OPTION><OPTION onclick='showacr();' value='1'>Add a Clinic</option></select></td>
+</tr>
+</table>
+
+<div id=ccr style='visibility:visible;'>
+<SELECT name='cn2' id=c>
+
+<?
+include "dcon.php";
+
+$sag="select * from cclist";
+$rag=mysql_query($sag);
+while($rocl=mysql_fetch_array($rag))
+{
+	if ($r['clid']==$rocl['cid'])
+		echo "<option selected=true value=".$rocl['cid'].">".$rocl['cn']."</option>";
+	else
+		echo "<option 	value=".$rocl['cid'].">".$rocl['cn']."</option>";
+}
+?>
+
+</SELECT>
+</div>
+
+<Div id=acr style='visibility : hidden;'>
+<TABLE>
+<TH colspan=2 align='center'>New Clinic</TH>
+<TR>
+<TD>Name</TD><TD><INPUT type='text' name='cn1'></TD>
+</TR>
+<tr>
+<TD>Address</TD><TD><INPUT type='text' name='ca'></TD>
+</tr>
+<tr>
+<TD>Post Code</TD><TD><INPUT type='text' name='cpc'></TD>
+</tr>
+<tr>
+<TD>Contact</TD><TD><INPUT type='text' name='cc'></TD>
+</tr>
+</TABLE>
+</DIV>
+
+<DIV id="cdets" style="position:relative; top:-110px;">
+<DIV id="aa">
+<TABLE>
+<TR>
+<TH colspan='2' align=center>Case Details</TH>
+</tr>
+<tr>
+<TD colspan="2">Agency</TD>
+</tr>
+<tr>
+<TD>Select Existing/New</TD>
+<td><SELECT onchange='togleag();' name=age id=agen><OPTION value='0' onclick='showcage();'>Current Agencies</OPTION><OPTION onclick='shownage();' value='1'>Add an Agency</option></select></td>
+</tr>
+</table>
+<tr>
+<DIV id="cage" style="visibility:visible;">
+<table>
+<tr>
+<TD>Select Existing</TD><TD>
+<SELECT name="sag">
+<?
+$s="select * from agency";
+// echo $s;
+$ra=mysql_query($s);
+
+while ($q=mysql_fetch_array($ra))
+{
+	if ($r['cage']==$q['aid'])
+		echo "<option selected='selected' value=".$q['aid'].">".$q['an']."</option>";
+	else
+		echo "<option value=".$q['aid'].">".$q['an']."</option>";
+}
+
+?>
+</SELECT>
+</TD>
+</tr>
+</TABLE>
+</DIV>
+
+<DIV id=nage style='visibility : hidden;'>
+<TABLE>
+<TH colspan=2 align='center'>New Agency</TH>
+<TR>
+<TD>Name</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='an'></TD>
+</TR>
+<tr>
+<TD>Address</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='aa'></TD>
+</tr>
+<tr>
+<TD>Post Code</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='ap'></TD>
+</tr>
+<tr>
+<TD>Email</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='ae'></TD>
+</tr>
+<tr>
+<TD>Contact</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='ac'></TD>
+</tr>
+<tr>
+<TD>Fax</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='af'></TD>
+</tr>
+</TABLE>
+</DIV>
+
+<DIV style="position:relative;top:-150px;" id="aar" align="center">Agency Reference <INPUT type=text name=aref value="<? echo $r['cageref']; ?> "></DIV>
+
+</DIV>
+
+
+<DIV style="position:relative;top:-130px;" id="ss">
+<table>
+<tr>
+<TD colspan="2">Solicitor</TD>
+</tr>
+<tr>
+<TD>Select Existing/New</TD>
+<td><SELECT onchange='togleso();' name=sol id=sol><OPTION value='0' onclick='showcsol();'>Current Solicitor</OPTION><OPTION onclick='shownsol();' value='1'>Add a Solicitor</option></select></td>
+</tr>
+</table>
+<tr>
+<DIV id="csol" style="visibility:visible;">
+<table>
+<tr>
+<TD>Select Existing</TD><TD>
+<SELECT name="sso">
+<?
+$s="select * from solicitor";
+$rs=mysql_query($s);
+
+while ($q=mysql_fetch_array($rs))
+{
+	if ($r['csol']==$q['sid'])
+		echo "<option selected='selected' value=".$q['sid'].">".$q['sn']."</option>";
+	else
+		echo "<option value=".$q['sid'].">".$q['sn']."</option>";
+}
+
+?>
+</SELECT>
+</TD>
+</tr>
+</TABLE>
+</DIV>
+
+<Div id=nsol style='visibility : hidden;'>
+<TABLE>
+<TH colspan=2 align='center'>New Solicitor</TH>
+<TR>
+<TD>Name</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='sn'></TD>
+</TR>
+<tr>
+<TD>Address</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='sa'></TD>
+</tr>
+<tr>
+<TD>Post Code</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='sp'></TD>
+</tr>
+<tr>
+<TD>Email</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='se'></TD>
+</tr>
+<tr>
+<TD>Contact</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='sc'></TD>
+</tr>
+<tr>
+<TD>Fax</TD><TD><INPUT value="<? echo $r['']; ?> " type='text' name='sf'></TD>
+</tr>
+</TABLE>
+</TD>
+</Div>
+
+<DIV align="center" id="ssr" style="position:relative;top:-160px;">Solicitor Reference <INPUT type=text name=sref value="<? echo $r['csolref']; ?> "></DIV>
+
+</DIV>
+
+</DIV>
+</DIV>
+
+
+<DIV style="float:right;width:32%;border-style:solid;border-width:2px;border-color:#5555DD;">
+
+
+<TABLE width="100%">
+<TR>
+<TH colspan='2' align=center>Special Instructions</TH>
+</tr>
+<tr>
+<TD><SELECT onchange='toglesoi();' name=soi id=soi><OPTION value='0' onclick='hidesoi();'>No</OPTION><OPTION onclick='showsoi();' value='1'>Yes</OPTION></SELECT></TD></TR>
+</TABLE>
+
+<DIV style='visibility:hidden' id='soid'>
+
+<table>
+
+<TR>
+	<TD><INPUT style="background-color : #AAAAFF;" type="button" id=p name="p" onclick="pic('pi','p');"><INPUT type="hidden" value="0" id="pi" name="pi"></TD>
+	<TD>Check ID</TD>
+
+	<TD><INPUT style="background-color : #AAAAFF;" type="button" id=l name="l" onclick="pic('li','l');"><INPUT type="hidden" value="0" id="li" name="nm"></TD>
+	<TD>Check Name</TD>
+
+	<TD><INPUT style="background-color : #AAAAFF;" type="button" id=b name="b" onclick="pic('bi','b');"><INPUT type="hidden" value="0" id="bi" name="b"></TD>
+	<TD>Check DoB</TD>
+</TR>
+
+<TR>
+	<TD><INPUT style="background-color : #AAAAFF;" type="button" id=u name="u" onclick="pic('ui','u');"><INPUT type="hidden" value="0" id="ui" name="a"></TD>
+	<TD>Check Date of Accident</TD>
+
+	<TD><INPUT style="background-color : #AAAAFF;" type="button" id=c name="c" onclick="pic('ci','c');"><INPUT type="hidden" value="0" id="ci" name="wmr"></TD>
+	<TD>Wait for Medical Records</TD>
+
+	<TD><INPUT style="background-color : #AAAAFF;" type="button" id=s1 name="c" onclick="pic('s1i','s1');"><INPUT type="hidden" value="0" id="s1i" name="sraa"></TD>
+	<TD>Submit Report w/o Medical Records and an Addendum afterwards</TD>
+</TR>
+
+<TR>
+	<TD><INPUT style="background-color : #AAAAFF;" type="button" id=s2 name="c" onclick="pic('s2i','s2');"><INPUT type="hidden" value="0" id="s2i" name="srw"></TD>
+	<TD>Submit Report w/o Medical Records</TD>
+
+	<TD><INPUT style="background-color : #AAAAFF;" type="button" id=c1 name="c" onclick="pic('c1i','c1');"><INPUT type="hidden" value="0" id="c1i" name="cot"></TD>
+	<TD>Comment on any Treatment</TD>
+
+	<TD><INPUT style="background-color : #AAAAFF;" type="button" id=c2 name="c" onclick="pic('c2i','c2');"><INPUT type="hidden" value="0" id="c2i" name="com"></TD>
+	<TD>Comment on any Medication</TD>
+
+</TR>
+
+<TR>
+	<TD><INPUT style="background-color : #AAAAFF;" type="button" id=c3 name="c" onclick="pic('c3i','c3');"><INPUT type="hidden" value="0" id="c3i" name="copa"></TD>
+	<TD>Comment on Effects of Past Accident(s)</TD>
+
+	<TD colspan="4">Other<INPUT type='text' name='othr'></TD>
+
+</tr>
+
+</table>
+
+</DIV>
+
+
+<DIV style="position:relative; top:-350px;" id="boi">
+<TABLE>
+<TR>
+<TH align=center>Booking Instructions</TH>
+</TR>
+<tr>
+<TD><TEXTAREA name=bi cols=40 rows=10>
+<?
+$sq="select * from booki where cid='".$_GET['cid']."'";
+$qq=mysql_query($sq);
+$rq=mysql_fetch_array($qq);
+
+echo $rq['bi']; 
+?>
+
+</TEXTAREA></TD>
+</TR>
+</TABLE>
+
+
+<TABLE>
+<TR>
+<TD>Attended</TD>
+<TD><SELECT onchange='togleacm();' name=acm id=acm><OPTION value='0' onclick='hideacm();'>Alone</OPTION><OPTION onclick='showacm();' value='1'>Accompanied</OPTION></SELECT><br>
+</TR>
+<tr>
+<TD colspan="2">
+<div id=acmd style='visibility:hidden;'>
+First Name<INPUT value="<? echo $r['']; ?> " type='text' name='afnm'>
+<br>
+Last Name<INPUT value="<? echo $r['']; ?> " type='text' name='alnm'>
+<br>
+Status<select name='stts'>
+<OPTION value=wife>Wife</OPTION>
+<OPTION value=husband>Husband</OPTION>
+<OPTION value=partner>Partner</OPTION>
+<OPTION value=girlfriend>Girlfriend</OPTION>
+<OPTION value=boyfriend>Boyfriend</OPTION>
+<OPTION value=daughter>Daughter</OPTION>
+<OPTION value=son>Son</OPTION>
+<OPTION value=mother>Mother</OPTION>
+<OPTION value=father>Father</OPTION>
+<OPTION value=parents>Parents</OPTION>
+<OPTION value=sister>Sister</OPTION>
+<OPTION value=brother>Brother</OPTION>
+<OPTION value=friend>Friend</OPTION>
+<OPTION value=carer>Carer</OPTION>
+<OPTION value=interpreter>Interpreter</OPTION>
+<OPTION value=solicitor>Solicitor</OPTION>
+</SELECT>
+</div>
+
+</TD>
+</TR>
+</TABLE>
+
+
+<TABLE>
+<TR>
+<TH colspan='2' align=center>Identification</TH>
+</tr>
+<tr>
+<TD><SELECT onchange='toglechk();' name=iid id=iid><OPTION value='0' onclick='hidechkd();'>Did Not Check</OPTION><OPTION onclick='showchkd();' value='1'>Checked</OPTION></SELECT></TD></TR>
+
+<TD><div id=chkd style='visibility:hidden;'>
+<INPUT style="background-color : #AAAAFF;" type="button" id=pas name="p" onclick="pic('pasi','pas');"><INPUT type="hidden" value="0" id="pasi" name="pasi"> Passport 
+<INPUT style="background-color : #AAAAFF;" type="button" id=lic name="l" onclick="pic('lici','lic');"><INPUT type="hidden" value="0" id="lici" name="lici"> License 
+<INPUT style="background-color : #AAAAFF;" type="button" id=ban name="b" onclick="pic('bani','ban');"><INPUT type="hidden" value="0" id="bani" name="bani"> Bank Card 
+<INPUT style="background-color : #AAAAFF;" type="button" id=uti name="u" onclick="pic('utii','uti');"><INPUT type="hidden" value="0" id="utii" name="utii"> Utility Bill 
+<INPUT style="background-color : #AAAAFF;" type="button" id=bir name="bc" onclick="pic('biri','bir');"><INPUT type="hidden" value="0" id="biri" name="biri"> Birth Certificate 
+<br>Other<INPUT value="none" type='text' name='othri'></div></TD>
+</TR>
+</TABLE>
+
+<H3>Medical Records</H3><br />
+<SELECT name="mnote">
+<OPTION value="1">Yes</OPTION>
+<OPTION value="0">No</OPTION>
+</SELECT>
+
+<INPUT type="hidden" value="<?echo $_GET['cid'];?>" name="cid">
+
+</DIV>
+</Div>
+
+<DIV align=center><INPUT value="Submit" type=submit value=Submit></DIV>
+
+</FORM>
+
+<table id='calenderTable'>
+<tbody id='calenderTableHead'>
+<tr>
+<td colspan='4' align='left'>
+<select onChange="showCalenderBody(createCalender(document.getElementById('selectYear').value, this.selectedIndex, false));" id='selectMonth'>
+<option value='0'>January</OPTION>
+<option value='1'>February</option>
+<option value='2'>March</option>
+<option value='3'>April</option>
+<option value='4'>May</option>
+<option value='5'>June</option>
+<option value='6'>July</option>
+<option value='7'>August</option>
+<option value='8'>September</option>
+<option value='9'>October</option>
+<option value='10'>November</option>
+<option value='11'>December</option>
+</select>
+</td>
+<td colspan='2' align='center'><select onChange="showCalenderBody(createCalender(this.value, document.getElementById('selectMonth').selectedIndex, false));" id='selectYear'></select></td>
+<td align='right'><a href='#' onClick='closeCalender();'>X</a></td>
+</tr>
+</tbody>
+<tbody id='calenderTableDays'>
+<tr style=''>
+<td>Su</td><td>Mo</td><td>Tu</td><td>We</td><td>Thu</td><td>Fr</td><td>Sa</td>
+</tr>
+</tbody>
+<tbody id='calender'></tbody>
+</table>
+
+<table height=400px><tr><td></td></tr></table>
+
+</body>
+</HTML>
+
+<?
+}
+?>

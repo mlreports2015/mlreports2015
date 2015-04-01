@@ -1,0 +1,13 @@
+Updates to Details Page
+	1. Retains values for [Attended], [Identification], [Medical Records]
+	2. Fixed [Headings], [Allignments]
+	3. Added alerts for special instructions.
+
+Updates to PMH Page
+	1. Retains previously added PMH.
+	2. Ability to block.
+	3. Improved accident section in PMH.
+		3.1 Ability to not specify location of previous injury.
+		3.2 Ability to not specify a time after which previous accident was resolved and get 'resolved before this accident'.
+		3.3 Ability to not specify if accident injury had resolved or not by selecting '...'.
+		

@@ -1,0 +1,9 @@
+[12-Mar-2009 12:29:21] PHP Warning:  mysql_fetch_array(): supplied argument is not a valid MySQL result resource in /home1/ikazmico/public_html/mlrrc/Process/mysql.php on line 13
+[12-Mar-2009 12:29:21] PHP Warning:  mysql_fetch_array(): supplied argument is not a valid MySQL result resource in /home1/ikazmico/public_html/mlrrc/Process/mysql.php on line 13
+[12-Mar-2009 12:29:21] PHP Warning:  mysql_fetch_array(): supplied argument is not a valid MySQL result resource in /home1/ikazmico/public_html/mlrrc/Process/mysql.php on line 21
+[12-Mar-2009 12:29:21] PHP Warning:  mysql_fetch_array(): supplied argument is not a valid MySQL result resource in /home1/ikazmico/public_html/mlrrc/Process/mysql.php on line 21
+[12-Mar-2009 12:29:22] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/ikazmico/public_html/mlrrc/Process/mysql.php:13) in /home1/ikazmico/public_html/mlrrc/Process/rtf/Rtf.php on line 379
+[12-Mar-2009 12:29:22] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/ikazmico/public_html/mlrrc/Process/mysql.php:13) in /home1/ikazmico/public_html/mlrrc/Process/rtf/Rtf.php on line 380
+[12-Mar-2009 12:29:22] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/ikazmico/public_html/mlrrc/Process/mysql.php:13) in /home1/ikazmico/public_html/mlrrc/Process/rtf/Rtf.php on line 381
+[12-Mar-2009 12:29:22] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/ikazmico/public_html/mlrrc/Process/mysql.php:13) in /home1/ikazmico/public_html/mlrrc/Process/rtf/Rtf.php on line 382
+[12-Mar-2009 12:29:22] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home1/ikazmico/public_html/mlrrc/Process/mysql.php:13) in /home1/ikazmico/public_html/mlrrc/Process/rtf/Rtf.php on line 383

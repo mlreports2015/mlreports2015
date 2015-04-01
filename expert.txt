@@ -1,0 +1,22 @@
+<html>
+<body>
+<b><center>Welcome |un|</center></b><br><br>
+<p>Thank you for signing up to mlReports.com, the premium medical reporting software.<br>
+Please go through this check-list:<br><br>
+</p>
+<ul>
+<li>Please make sure that you have a scanned copy of your signature on your computer.</li>
+<li>Please make sure that the signature is in <i style="color:#A61515;">'jpg'</i>, <i style="color:#A61515;">'png'</i> or <i style="color:#A61515;">'bmp'</i> format.</li>
+<li>If the signature is in any format other than the ones specified or you are unsure as to which format the signaure is in, contact our friendly support team.</li>
+<br>
+<li>Make sure you remember your GMC Number or have it handy</li>
+<br>
+<li>You will have to write some lines about your qualifications and your experience as an Expert Witness.</li>
+</ul>
+
+<p>Once you have gone through the checklist, please follow this <a href='http://www.mlreports.com/mlr/expReg.php?un=|un|'>link</a> to complete the registration process.</p>
+
+<br><br>
+Thanks and best regards,<br>
+Hoping to meet and exceed your expectations,<br>
+The mlReports Team

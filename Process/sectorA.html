@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+<body>
+<script language="javascript" type="text/javascript">
+function editing(e){
+
+document.getElementById(e.target.id).setAttribute('edited','true');
+
+alert(document.getElementById(e.target.id).getAttribute('edited'));
+
+}
+</script>
+
+<table width="98%" cellpadding='10px' style="font-size:12px;font-family:Arial, Helvetica, sans-serif;border:1px solid #CCC;padding:10px;border-radius:6px;box-shadow: 5px 7px 7px 0px #f1e9b5;font-size:14px;">
+<tr>
+<td colspan="2">
+<h2>MEDICAL REPORT</h2>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="background-color:#77a9c9;font-weight:bold;font-size:22px;">
+Section A - Claimant's Details
+</td>
+</tr>
+<tr>
+<td>Claimant's full name</td><td><input type="text" id="flName" value="Mr. Melvit Celik" style="border:1px solid #FFF" onchange="editing(event)"/></td>
+</tr>
+<tr>
+<td>Address</td><td>  , <br/>  ,  <br/><br/></td>
+</tr>
+<tr>
+<td>Date of birth</td><td><input type="text" id="dob" value="[cdb]" style="border:1px solid #FFF" onchange="editing(event)"/></td>
+</tr>
+<tr>
+<td>Age of claimant at time of accident</td><td><input id="age" type="text" value="42" style="border:1px solid #FFF" onchange="editing(event);" /></td>
+</tr>
+<tr>
+<td>Occupation</td><td><input type="text" id="job" value="[job]" style="border:1px solid #FFF" onchange="editing(event);" /></td>	
+</tr>
+<tr>
+<td>1.3 Date of accident</td><td><input id="doa" type="text" value="[cda]" style="border:1px solid #FFF" onchange="editing(event)" /></td>
+</tr>
+<tr>
+<td>1.4 Date of examination</td><td><input id="doe" type="text" value="[cde]"  style="border:1px solid #FFF" /></td>
+</tr>
+<tr>
+<td>1.5 Date of report</td><td>07-06-2014</td>
+</tr>
+<tr>
+<td>1.6 Name of instructing solicitors</td><td><input type="text" value="[sol]" style="border:1px solid #FFF" onchange="editing(event)" /></td>	
+</tr>
+<tr>
+<td>1.7 Solicitors Reference</td><td><input type="text" id="solRef" name="solRef" value="[solref]" style="border:1px solid #FFF" onchange="editing(event)" /></td>	
+</tr>
+<tr>
+<td>1.8 Name of instructing agency</td><td><input type="text" value="ML Doctors Limited" style="border:1px solid #FFF" /></td>
+</tr>
+<tr>
+<td>1.9 Agency Reference</td><td><input type="text" id="ageRef" name="ageRef" value="MLD/16769/HY/Celik"  style="border:1px solid #FFF" /></td>
+</tr>
+</table> 
+
+
+
+</body>
+</html>

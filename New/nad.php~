@@ -1,0 +1,92 @@
+<HTML>
+<head>
+<title>ML Reports</title>
+</head>
+
+<body marginheight="200" marginwidth="0" topmargin="0" leftmargin="0">
+
+<div align='center'>
+<div style='position:relative; top:-200px; left:0px;'>
+<img src='templates/headd.png' />
+</div>
+
+<div style='position:relative; top:-400px; left:-5px;'>
+<img src='templates/mlr.png' />
+</div>
+
+
+<div style="position:relative; top:-350px; background-color:#870524; width:600px;">
+
+<center style="color:white; font-size:large;">New Organization</center>
+
+<form action="nad2.php" method="POST" enctype="multipart/form-data">
+
+<table style="color:white;">
+<tr>
+<td>Organization</td>
+<td><input type="text" name="o" size="15" /></td>
+
+<td>Creator Login Name</td>
+<td><input type="text" name="n" size="15" /></td>
+</tr>
+<tr>
+<td>Address Line 1</td>
+<td><input type="text" name="a1" size="15" /></td>
+
+<td>Address Line 2</td>
+<td><input type="text" name="a2" size="15" /></td>
+</tr>
+<tr>
+<td>Address Line 3</td>
+<td><input type="text" name="a3" size="15" /></td>
+<td>City</td>
+<td><input type="text" name="ct" size="15" /></td>
+</tr>
+<tr>
+<td colspan="4" align="center">Post Code<input type="text" name="pc" size="15" /></td>
+</tr>
+<tr>
+<td>Telephone 1</td>
+<td><input type="text" name="t1" size="15" /></td>
+<td>Telephone 2</td>
+<td><input type="text" name="t2" size="15" /></td>
+</tr>
+<tr>
+<td colspan="4" align="center">Fax<input type="text" name="f" /></td>
+<tr>
+<tr>
+<th colspan="4" align="center">Reference Number Format <a onclick="document.getElementById('h').style.visibility='visible'; document.getElementById('h').style.left=0+'px';document.getElementById('h').style.top=0+'px';" style="cursor:pointer;"><img src="templates/help.png" /></a></th>
+</tr>
+<tr>
+<td>Organization Initials</td>
+<td><input type="text" name="i" size="15" /></td>
+<td>Starting Number</td>
+<td><input type="text" name="n" size="15" /></td>
+</tr>
+<td colspan="4" align="center"><input style="color:white; background-color:#870524;" type="submit" value="Submit" /></td>
+</tr>
+<tr>
+</tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
+</table>
+
+</form>
+
+</div>
+
+</div>
+
+<div id="h" style="background-color : #f9fd94; position:absolute;" onmouseout="document.getElementById('h').style.visibility='hidden';">
+<a style="cursor:pointer; visibility:hidden;" onclick="document.getElementById('h').style.visibility='hidden';">
+<img src="templates/close.png" />
+</a>
+<p>The following section deals with the Reference Number for your organization that would appear on your reports.</p>
+<p>The Reference Number contains initials followed by numbers, eg. for an organization called ABC DEF, the initials could be AD followed by a number.</p>
+<p>You have to enter the initials and the starting number (AD1 or AD500 or AD1000 etc) in the respective fields below.</p>
+</div>
+
+</body>
+
+</HTML>

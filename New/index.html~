@@ -1,0 +1,61 @@
+<div>
+<head>
+<title>ML Reports</title>
+</head>
+
+<body style="background-color:#c7fd9c;" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0">
+
+<div align=center>
+<img src='templates/title.jpg' width='100%' />
+</div>
+
+<div align='center'>
+<div style='position:relative; top:-200px; left:0px;'>
+<img src='templates/headd.png' />
+</div>
+
+<div style='position:relative; top:-400px; left:-5px;'>
+<img src='templates/mlr.png' />
+</div>
+
+
+<div style="position:relative; top:-300px; background-color:#870524; width:300px;">
+
+<center style="color:white; font-size:large;">Login</center>
+
+<form action="index.php" method="POST">
+
+<table style="color:white;">
+<tr>
+<td>Organization</td>
+<td><input type="text" name="o" size="15" /></td>
+</tr>
+<tr>
+<td>Name</td>
+<td><input type="text" name="n" size="15" /></td>
+</tr>
+<tr>
+<td>Password</td>
+<td><input type="password" name="p" size="15" /></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input style="color:white; background-color:#870524;" type="submit" value="Submit" /></td>
+</tr>
+<tr>
+<td><a href=nu0.php style="color:white;">New User</a></td>
+<td align="center"><a href=fp.html style="color:white;">Forgotten Password</a></td>
+</tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
+<tr><td></td></tr>
+</table>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+
+</HTML>

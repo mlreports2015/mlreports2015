@@ -1,0 +1,46 @@
+
+
+.btn {
+    background-image : url('../images/btn.png');
+    cursor : pointer;
+    float : left;
+    /* width : 120px;
+    */ padding-left : 10px;
+    padding-right : 10px;
+    color : #FFF;
+    border-right-color:#FFF;
+    border-right-width:1px;
+    border-right-style:solid;
+    height : 36px;
+  }
+
+
+div#act {
+    height : 100%;
+    visibility : visible;
+    width : 100%;
+  }
+
+
+.b {
+    color : #FFF;
+  }
+
+
+.ifr {
+    height : 0px;
+    visibility : hidden;
+  }
+
+
+iframe {
+    height : 1500px;
+    width : 100%;
+  }
+
+div#pm
+{
+	position:absolute;
+	top:200px;
+}
+

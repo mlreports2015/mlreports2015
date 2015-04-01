@@ -1,0 +1,29 @@
+div#n
+{
+	visibility:visible;
+}
+
+div#p
+{
+	visibility:hidden;
+}
+
+div#acc
+{
+	visibility:hidden;
+}
+
+div#med
+{
+	visibility:hidden;
+}
+
+div#musc
+{
+	visibility:hidden;
+}
+
+div#other
+{
+	visibility:hidden;
+}

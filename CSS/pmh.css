@@ -1,0 +1,36 @@
+div#n
+{
+	visibility:visible;
+}
+
+div#p
+{
+	visibility:hidden;
+}
+
+div#acc
+{
+
+	display:none;
+}
+
+div#med
+{
+	display:none;
+}
+
+div#musc
+{
+	display:none;
+}
+
+div#other
+{
+	visibility:hidden;
+}
+
+select 
+{
+   border-radius:6px;
+   border:1px solid #CCC;
+}

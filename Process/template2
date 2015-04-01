@@ -1,0 +1,44 @@
+<u><strong>3. DOCUMENTS AVAILABLE</strong></u>
+|dava|
+<u><strong>4. CASE DETAILS</strong></u>
+|cdet|
+<u><strong>5. RELEVANT PAST MEDICAL HISTORY</strong></u>
+|pmh|
+<u><strong>6. THE ACCIDENT</strong></u>
+|accid|
+<U><strong>7. INJURIES SUSTAINED</strong></U>
+|Lnm| reports that |G1|:
+|symp|
+<u><strong>8. TREATMENTS</strong></u>
+<i><strong>8.1 Initial Treatment</strong></i>
+|itreat|
+<i><strong>8.2 Later Treatment</strong></i>
+|ltreat|
+<u><strong>9. EFFECTS OF THE ACCIDENT ON THE CLAIMANT'S ABILITY TO WORK</strong></u>
+|eaw|
+<u><strong>10. EFFECTS OF THE ACCIDENT ON THE CLAIMANT'S DAILY LIFE</strong></u>
+<i><strong>10.1 Home Circumstances:</strong></i>
+|hcc|
+<i><strong>10.2 Travel:</strong></i>
+|trvl|
+<i><strong>10.3 Daily Living:</strong></i>
+|Lnm| reports that since the accident:
+|dlv|
+<u><strong>11. EXAMINATION FINDINGS</strong></u>
+<i><strong>11.1 Dominant Hand:</strong></i>
+|dh|
+<i><strong>11.2 General Appearance:</strong></i>
+|ga|
+<i><strong>11.3 Mental Health:</strong></i>
+Based on the interview and my clinical observations, today:
+|mh|
+<i><strong>11.4 Injuries, Wounds, Scars and Other Examination Findings:</strong></i>
+|iws|
+<i><strong>11.5 Examination of the Neck:</strong></i>
+|eon|
+<i><strong>11.6 Examination of the Upper Limbs:</strong></i>
+|eou|
+<i><strong>11.7 Examination of the Back:</strong></i>
+|eob|
+<i><strong>11.8 Examination of the Lower Limbs:</strong></i>
+|eol|

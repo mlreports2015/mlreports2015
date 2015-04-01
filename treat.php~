@@ -1,0 +1,427 @@
+<?php
+
+session_start();
+
+include "inc.php";
+
+
+if (!isset($_SESSION['id']))
+{
+	rdrctr("Login Details Incorrect","index.html");
+}
+else
+{
+	include 'dcon.php';
+?>
+<HEAD>
+<TITLE>MLR Case</TITLE>
+
+<SCRIPT language='JavaScript' type='text/javascript' src='Scripts/index.js'></SCRIPT>
+
+<link href="CSS/calender.css" rel="stylesheet" type="text/css">
+<script language="javaScript" type="text/javascript" src="Scripts/calender_date_picker.js"></script>
+
+<?
+echo "<link href=\"CSS/eff.css\" rel=\"stylesheet\" type=\"text/css\">
+	<script language=\"javaScript\" type=\"text/javascript\" src=\"Scripts/treat.js\"></script>
+	<link href=\"CSS/calender.css\" rel=\"stylesheet\" type=\"text/css\">
+	<script language=\"javaScript\" type=\"text/javascript\" src=\"Scripts/calender_date_picker.js\"></script>";
+?>
+
+</HEAD>
+
+<BODY background="images/back.png" onload="init('d','de');">
+
+<? $id= $_GET['cid']; ?>
+
+<DIV style="background-image : url('images/fe.png'); background-repeat : no-repeat; width:1024px; float:right;">
+<IMG align="middle" src="images/title3.png" />
+<IMG align="middle" src="images/treat.png" style="margin-left : 700px;" />
+</DIV>
+
+<DIV style="float:right;right:20px;width:100%;">
+<A href=home.php>Home</A> |
+<A href=search.php>All Cases</A> |
+<A href=search.php>General Search</A> |
+<A href=search.php>Incomplete Cases</A> |
+<A href=search.php>Complete Cases</A> |
+</DIV>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<CENTER><H1><? echo "ML".$id;?></H1></CENTER>
+
+<CENTER>
+<DIV align="center">
+
+<A href="det.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Details</A> | 
+
+<A href="pmh.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">PMH</A> | 
+
+<A href="accid.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Accident</A> | 
+
+<A href="effect.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Symptoms</A> | 
+
+<A href="treat.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Treatment</A> | 
+
+<A href="life.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Life</A> | 
+
+<A href="exam.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>"> Examination </A> | 
+
+<A href="summary.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Summary</A> | 
+
+<A href="prog.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Prognosis </A> | 
+
+<A href="repgen.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Report</A>
+
+<Div style="width:100%"></DIV>
+</A>
+</CENTER>
+
+
+<BODY>
+
+<FORM name="frm" method="POST" action="Process/treat.php">
+
+<input type="hidden" value="0" name="tv" id="theValue" />
+
+<input type="hidden" value="<? $id=$_GET['cid']; echo $id;?>" name="id" />
+
+<DIV align="center">
+
+<DIV align="center">
+
+<H1>Intial Treamtment</H1>
+
+<TABLE border="1">
+	<TR>
+		<TD>Treatment</TD>
+		<TD>
+			<SELECT id="itr" multiple="true">
+				<OPTION value=".">None</OPTION>
+				<OPTION value="first aid">first aid</OPTION>
+				<OPTION value="soft collar">soft collar</OPTION>
+				<OPTION value="sling">sling</OPTION>
+				<OPTION value="dressing">dressing</OPTION>
+			</SELECT>
+		</TD>
+		<TD>
+			by 
+		</TD>
+		<TD>
+			<SELECT id="itb" multiple="true">
+				<OPTION value=".">no one</OPTION>
+				<OPTION value="a first-aider">first aider</OPTION>
+				<OPTION value="a paramedic">paramedic</OPTION>
+				<OPTION value="a passerby">passerby</OPTION>
+				<OPTION value="a nurse">nurse</OPTION>
+				<OPTION value="a doctor">doctor</OPTION>
+				<OPTION value="a police-officer">police</OPTION>
+				<OPTION value="a relative">Relative</OPTION>
+			</SELECT>
+		</TD>
+		<TD>
+			<SELECT id="ith">
+				<OPTION value="exchanged details">exchanged details</OPTION>
+				<OPTION value="exchanged details after police came">exchanged details after police came</OPTION>
+				<OPTION value="">none</OPTION>
+			</SELECT>
+		</TD>
+		<TD>
+			<SELECT id="iaf">
+				<OPTION value="continued">...</OPTION>
+				<OPTION value="lift">lift</OPTION>
+				<OPTION value="taxi">taxi</OPTION>
+				<OPTION value="ambulance">ambulance</OPTION>
+				
+			</SELECT>
+		</TD>
+		<TD>
+			<SELECT id="ide">
+				<OPTION value="home">home</OPTION>
+				<OPTION value="to work">work</OPTION>
+				<OPTION value="to the hospital">hospital</OPTION>
+				<OPTION value="to casualty">casualty</OPTION>
+			</SELECT>
+		</TD>
+	</TR>
+	<?
+	$o=$_SESSION['o'];
+	  $s="select gen from claimant where cid=$id and org='$o'";
+	  $q=mysql_query($s);
+	  $r=mysql_fetch_array($q);
+	  
+	  $g='';
+	  
+	  if ($r['gen']=='m')
+	  	$g='He';
+	  else
+	  	$g='She';
+	?>
+	<TR><TD colspan="5" align="center"><INPUT type="button" value="Add" onclick="addinit('<?echo $g?>');"></TD></TR>
+</TABLE>
+
+<TEXTAREA id="itf" name="itf" cols="100"></TEXTAREA>
+
+
+<DIV align="center">
+
+<H1>Later Treatment</H1>
+
+<TABLE border="1">
+	<TR>
+		<TD>
+			<SELECT id="ltp" onclick="ltpotc();">
+				<OPTION value="Attended casualty">casualty</OPTION>
+				<OPTION value="Began taking over the counter">OTC</OPTION>
+				<OPTION value="Consulted GP">GP</OPTION>
+				<OPTION value="Attended walkin center">Walkin Center</OPTION>
+				<OPTION value="Called NHS direct">NHS Direct</OPTION>
+			</SELECT>
+		</TD>
+		<TD>
+			<INPUT type="text" id="ltl" size="3" /> 
+			<SELECT name="ld" id="ld">
+				<OPTION value="immediately">immadiately</OPTION>
+				<OPTION value="shortly">shortly</OPTION>
+				<OPTION value="hour">hours</OPTION>
+				<OPTION value="day">days</OPTION>
+				<OPTION value="week">weeks</OPTION>
+				<OPTION value="month">months</OPTION>
+				<OPTION value="year">years</OPTION>
+			</SELECT> 
+			later
+		</TD>
+		<TD>
+			<SELECT id="lad" onclick="setvis();" multiple="true">
+				<OPTION value="advised">advised</OPTION>
+				<OPTION value="prescribed">prescribed</OPTION>
+				<OPTION value="referred">referred</OPTION>
+				<OPTION value="sick-note">sick-note</OPTION>
+			</SELECT>
+		</TD>
+		<TD>
+			<DIV id="advised" style="visibility:hidden;">
+				<TABLE>
+					<TR><TH colspan="2" align="center">Advised</TH></TR>
+					<TR>
+						<TD width="20px"><INPUT type="button" id="pk" onclick="togglex('pk','ad[0]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="ad[0]" />Painkillers</TD>
+						<TD width="20px"><INPUT type="button" id="sa" onclick="togglex('sa','ad[1]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="ad[1]" />Stay Active</TD>
+						<TD width="20px"><INPUT type="button" id="ex" onclick="togglex('ex','ad[2]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="ad[2]" />Exercise</TD>
+					</TR>
+					<TR>
+						<TD width="20px"><INPUT type="button" id="re" onclick="togglex('re','ad[3]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="ad[3]" />Rest</TD>
+						<TD width="20px"><INPUT type="button" id="ns" onclick="togglex('ns','ad[4]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="ad[4]" />NSAID</TD>
+						<TD width="20px"><INPUT type="button" id="ot" onclick="togglex('ot','ad[5]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="ad[5]" />Other</TD>
+					</TR>
+				</TABLE>
+			</DIV>
+
+			<DIV id="presc" style="visibility:hidden;">
+			     <TABLE>
+					<TR><TH align="center" colspan="2">Prescribed</TH></TR>
+					<TR>
+						<TD width="20px"><INPUT type="button" id="pk1" onclick="togglex('pk1','pr[0]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="pr[0]" />Painkillers</TD>
+						<TD width="20px"><INPUT type="button" id="ns1" onclick="togglex('ns1','pr[1]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="pr[1]" />NSAID</TD>
+						<TD width="20px"><INPUT type="button" id="ad1" onclick="togglex('ad1','pr[2]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="pr[2]" />Anti-Depressants</TD>
+					</TR>
+					<TR>
+						<TD width="20px"><INPUT type="button" id="ge1" onclick="togglex('ge1','pr[3]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="pr[3]" />Gel</TD>
+						<TD width="20px"><INPUT type="button" id="sp1" onclick="togglex('sp1','pr[4]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="pr[4]" />Sleeping Pills</TD>
+						<TD width="20px"><INPUT type="button" id="mr1" onclick="togglex('mr1','pr[5]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="pr[5]" />Muscle Relaxant</TD>
+					</TR>
+					<TR>
+						<TD width="20px"><INPUT type="button" id="ot1" onclick="togglex('ot1','pr[6]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="pr[6]" />Other</TD>
+					</TR>
+				</TABLE>
+		        </DIV>
+
+			<DIV id="reff" style="visibility:hidden;">
+			     <TABLE>
+					<TR><TH align="center" colspan="2">Prescribed</TH></TR>
+					<TR>
+						<TD>Was Referred to:</TD>
+						<TD>
+							<SELECT name="scoopn" id='scoon'>
+<!-- 								<OPTION value="none">None</OPTION> -->
+								<OPTION value="specialist">Referred to Specialist</OPTION>
+								<OPTION value="chiropractitioner">Referred to Chiropractitioner</OPTION>
+								<OPTION value="osteopath">Referred to Osteopath</OPTION>
+								<OPTION value="orthopaedic surgeon">Referred to Orthopaedic Surgeon</OPTION>
+								<OPTION value="pain specialist">Referred to Pain Specialist</OPTION>
+								<OPTION value="neurologist">Referred to Neurologist</OPTION>
+								<OPTION selected='selected' value="physiotheraphist">Referred to Physiotheraphist</OPTION>
+							</SELECT>
+						</TD>
+						<TD>
+							<INPUT type="checkbox" id=rstrt onclick='rstrtx();' /> Started
+						</TD>
+					</TR>
+				</TABLE>
+				<DIV id='rstrtxyz' style='visibility:hidden;'>
+					<INPUT type='text' size='1' id='rstrttm'>
+					<SELECT id='rstrtaft'>
+						<OPTION value="immediately">immadiately</OPTION>
+						<OPTION value="day">days</OPTION>
+						<OPTION value="week">weeks</OPTION>
+						<OPTION value="month">months</OPTION>
+						<OPTION value="year">years</OPTION>
+					</SELECT>
+					<SELECT id=refst onclick='refstx();'>
+							<OPTION value=".">...</OPTION>
+							<OPTION value="finished">Finished</OPTION>
+							<OPTION value="continuing">Continues</OPTION>
+					</SELECT>
+				</DIV>
+				
+				<DIV id='reffin' style='visibility:hidden;'>
+					Finished After<INPUT type=text id=reffas size=1 /> Sessions
+				</DIV>
+				<DIV id='refcon' style='visibility:hidden; position:relative; top:-20px;'>
+					Sessions So Far <INPUT type=text id=refssof size=1 />
+				</DIV>
+				<DIV id=refben style='visibility:hidden;'>
+					Benefit
+					<SELECT id=refcond>
+						<OPTION value='.'>...</OPTION>
+						<OPTION value='worse'>Worsened</OPTION>
+						<OPTION value='not been'>Not Useful</OPTION>
+						<OPTION value='been slightly'>Slightly</OPTION>
+						<OPTION value='been moderately'>Moderately</OPTION>
+						<OPTION value='been'>Useful</OPTION>
+						<OPTION value='been extremely'>Extremely</OPTION>
+					</SELECT>
+				</DIV>
+		        </DIV>
+
+			<DIV id='snot' style='visibility:hidden;'>
+				<Table>
+					<TR>
+						<TD>For <INPUT type='text' size=1 id='skdz' />
+						<TD>
+							<SELECT name="skdzt" id="otcdur2">
+								<OPTION value="day">days</OPTION>
+								<OPTION value="week">weeks</OPTION>
+								<OPTION value="month">months</OPTION>
+								<OPTION value="year">years</OPTION>
+							</SELECT>
+						</TD>
+				</Table>
+			</DIV>
+
+			<DIV id="otcdv" style="position : relative; top : -70px; z-index : 2;visibility:hidden;">
+			     <TABLE>
+					<TR>
+						<TD width="20px"><INPUT type="button" id="pk2" onclick="togglex('pk2','otcx[0]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="otcx[0]" />Painkillers</TD>
+						<TD width="20px"><INPUT type="button" id="ns2" onclick="togglex('ns2','otcx[1]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="otcx[1]" />NSAID</TD>
+						<TD width="20px"><INPUT type="button" id="ot2" onclick="togglex('ot2','otcx[2]');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="otcx[2]" />Other</TD>
+					</TR>
+				</TABLE>
+				<TABLE align="center">
+					<TR align="center">
+						<TD width="20px"><INPUT type="button" id="otcef" onclick="togglex('otcef','otceff');" style="background-color:#BBB;" /></TD>
+						<TD><INPUT type="hidden" value="0" id="otceff" />Effective</TD>
+					</TR>
+				</TABLE>
+				<TABLE align="center">
+					<TR align="center">
+						<TD>Took for</TD>
+						<TD><INPUT size=1 type="text" id="otcdur" /></TD>
+						<TD>
+							<SELECT name="otcdur2" id="otcdur2">
+								<OPTION value="day">days</OPTION>
+								<OPTION value="week">weeks</OPTION>
+								<OPTION value="month">months</OPTION>
+								<OPTION value="year">years</OPTION>
+							</SELECT>
+						</TD>
+					</TR>
+				</TABLE>
+		        </DIV>
+
+			<br />
+			<INPUT type="hidden" name="ltro" id="ltro" disabled="true" size="40">
+		</TH>
+	</TR>
+	
+	<TR><TD colspan="3" align="center"><INPUT type="button" value="Add" onclick="addlater2();"></TD></TR>
+</TABLE>
+
+</DIV>
+
+<DIV id=nu> </DIV>
+
+<CENTER><H2>Referred</H2></CENTER>
+<TABLE border="1">
+<TR><TD valign="top">
+<SELECT name="scoopn">
+	<OPTION value="none">None</OPTION>
+	<OPTION value="spec">Referred to Specialist</OPTION>
+	<OPTION value="chiro">Referred to Chiropractitioner</OPTION>
+	<OPTION value="oste">Referred to Osteopath</OPTION>
+	<OPTION value="ortho">Referred to Orthopaedic Surgeon</OPTION>
+	<OPTION value="pspec">Referred to Pain Specialist</OPTION>
+	<OPTION value="neuro">Referred to Neurologist</OPTION>
+	<OPTION value="physio">Referred to Physiotheraphist</OPTION>
+</SELECT>
+</TD>
+
+<TD rowspan="2">
+<DIV id="iftru();" style="visibility:hidden;">
+<TABLE>
+<TR>
+<TD>
+<!--<SELECT name="">
+
+</SELECT>-->
+</TD>
+<TD>
+started after
+<SELECT id="saft" onclick="safter();">
+	<OPTION value="immediately">immediately</OPTION>
+	<OPTION value="later">later</OPTION>
+	<OPTION value="has not started yet">has not started yet</OPTION>
+</SELECT>
+
+<DIV id="satm" style="visibility:hidden;">
+<INPUT type="text" id="sattm" />
+</DIV>
+
+</TD>
+</TR>
+<TR><TD colspan="2" align="center"><INPUT type="button" value="add" /></TD></TR>
+</TABLE>
+</DIV>
+</TD></TR>
+</TABLE>
+
+<INPUT type="submit" value="Submit">
+
+</BODY>
+
+</HTML>
+
+<?
+}
+?>

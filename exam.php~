@@ -1,0 +1,301 @@
+<?php
+
+session_start();
+
+include "inc.php";
+
+
+if (!isset($_SESSION['id']))
+{
+	rdrctr("Login Details Incorrect","index.html");
+}
+else
+{
+	include 'dcon.php';
+?>
+<HEAD>
+<TITLE>MLR Case</TITLE>
+
+<SCRIPT language='JavaScript' type='text/javascript' src='Scripts/index.js'></SCRIPT>
+
+<link href="CSS/calender.css" rel="stylesheet" type="text/css">
+<script language="javaScript" type="text/javascript" src="Scripts/calender_date_picker.js"></script>
+
+<?
+echo "<link href=\"CSS/pmh.css\" rel=\"stylesheet\" type=\"text/css\">
+	<script language=\"javaScript\" type=\"text/javascript\" src=\"Scripts/exam.js\"></script>
+	<link href=\"CSS/calender.css\" rel=\"stylesheet\" type=\"text/css\">
+	<script language=\"javaScript\" type=\"text/javascript\" src=\"Scripts/calender_date_picker.js\"></script>";
+?>
+
+</HEAD>
+
+<BODY background="images/back.png" onload="init('d','de');">
+
+<? $id= $_GET['cid']; ?>
+
+<DIV style="background-image : url('images/fe.png'); background-repeat : no-repeat; width:1024px; float:right;">
+<IMG align="middle" src="images/title3.png" />
+<IMG align="middle" src="images/exam.png" style="margin-left : 700px;" />
+</DIV>
+
+<DIV style="float:right;right:20px;width:100%;">
+<A href=home.php>Home</A> |
+<A href=search.php>All Cases</A> |
+<A href=search.php>General Search</A> |
+<A href=search.php>Incomplete Cases</A> |
+<A href=search.php>Complete Cases</A> |
+</DIV>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<CENTER><H1><? echo "ML".$id;?></H1></CENTER>
+
+<CENTER>
+<DIV align="center">
+
+<A href="det.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Details</A> | 
+
+<A href="pmh.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">PMH</A> | 
+
+<A href="accid.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Accident</A> | 
+
+<A href="effect.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Symptoms</A> | 
+
+<A href="treat.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Treatment</A> | 
+
+<A href="life.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Life</A> | 
+
+<A href="exam.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>"> Examination </A> | 
+
+<A href="summary.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Summary</A> | 
+
+<A href="prog.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Prognosis </A> | 
+
+<A href="repgen.php?cid=<? echo $id; ?>&id=<? echo rand(0,1000); ?>">Report</A>
+
+<Div style="width:100%"></DIV>
+</A>
+</CENTER>
+
+
+<FORM method="POST" action="Process/exam.php">
+	
+<input type="hidden" value="0" name="cn" id="cn" />
+<input type="hidden" value="0" name="cu" id="cu" />
+<input type="hidden" value="0" name="cb" id="cb" />
+<input type="hidden" value="0" name="cl" id="cl" />
+
+<input type="hidden" value="<? echo $id;?>" name="id" />
+
+<?
+$org=$_SESSION['o'];
+  $q=mysql_query("select * from claimant where cid=$id,org='$org'");
+  $r=mysql_fetch_array($q);
+  $g=$r['gen'];
+  
+  if ($g=='m')
+  {
+  $g1='His';
+  $g='He';
+  }
+  else
+  {
+  $g1='Her';
+  $g='She';
+  }
+  
+  $n=$r['ct']." ".trim($r['cln']);
+  
+  
+?>
+
+<CENTER><H1>Examination</H1></CENTER>
+
+<DIV align="center">
+
+<H2>Examination 1</H2>
+
+<TABLE align="center" border="1" width=900px>
+
+<TR>
+	<TD>Dominant Hand</TD>
+	<TD><SELECT name="dh"><OPTION value="<?echo $g;?> is ambidextrous.">ambidextrous</OPTION><OPTION value="<?echo $g;?> is right handed." selected="selected">Right</OPTION><OPTION value="<?echo $g;?> is left handed.">Left</OPTION></SELECT></TD>
+</TR>
+
+<TR>
+	<TD>General Appearance</TD>
+	<TD>
+		<INPUT type="text" size="50" name="ga1" value="<?echo $n;?> looked well." /><br />
+		<INPUT type="text" size="50" name="ga2" value="<?echo $g;?> appeared to move easily during the examination." />
+	</TD>
+</TR>
+
+<TR>
+
+	<TD>Mental Health</TD>
+	<TD>
+		<INPUT type="text" size="50" name="mh1" value="<?echo $n;?> was not suffering from anxiety." /><br />
+		<INPUT type="text" size="50" name="mh2" value="<?echo $g;?> was not depressed." />
+	</TD>
+</TR>
+
+<TR>
+	<TD>
+		Injuries, Wounds, Scars etc.
+	</TD>
+	<TD>
+		<INPUT type="text" size="50" value="No wounds or scars were seen." name="iws" />
+	</TD>
+</TR>
+
+</TABLE>
+
+<H2>Examination 2</H2>
+
+<b>Neck</b>
+
+<TABLE align="center" border="1">
+
+<TR>
+	<TD>
+		<SELECT id="nck" multiple="true">
+			<OPTION value="Forward flexion">Forward flexion</OPTION>
+			<OPTION value="Extension">Extension</OPTION>
+			<OPTION value="Right rotation">Right rotation</OPTION>
+			<OPTION value="Left rotation">Left rotation</OPTION>
+			<OPTION value="Right lateral flexion">Right lateral flexion</OPTION>
+			<OPTION value="Left lateral flexion">Left lateral flexion</OPTION>
+			<OPTION value="all">Select All</OPTION>
+		</SELECT>
+		was
+		<INPUT type="text" id="np" value="" size="2" />% 
+		of
+		<INPUT type="text" id="nnorm" value=" normal" />
+		<SELECT id="nndp">
+			<OPTION value="appeared to be painless">Appeared Painless</OPTION>
+			<OPTION value="appeared to cause discomfort">Caused Discomfort</OPTION>
+			<OPTION value="appeared to cause pain">Caused Pain</OPTION>
+		</SELECT>
+	</TD>
+</TR>
+<TR>
+	<TD colspan="1" align="center"><INPUT value="Add" type="button" onClick="addiv('nck','np','nnorm','nndp','cn','nk','n')" /></TD>
+</TR>
+
+</TABLE>
+
+<DIV id="nk" align="center" style="border-style:solid;color:#48D"> <H3>Neck</H3> </DIV>
+
+
+<b>Upper Limbs</b>
+<TABLE align="center" border="1">
+<TR>
+	<TD>
+		<SELECT id="ulmb" multiple="true">
+			<OPTION id="x" value="Right hand on head">Right hand on head</OPTION>
+			<OPTION value="Left hand on head">Left hand on head</OPTION>
+			<OPTION value="Right hand between shoulders">Right hand between shoulders</OPTION>
+			<OPTION value="Left hand between shoulders">Left hand between shoulders</OPTION>
+			<OPTION value="Right elbow movement">Right elbow movement</OPTION>
+			<OPTION value="Left elbow movement">Left elbow movement</OPTION>
+			<OPTION value="Right wrist movement">Right wrist movement</OPTION>
+			<OPTION value="Left wrist movement">Left wrist movement</OPTION>
+			<OPTION value="Right hand grip">Right hand grip</OPTION>
+			<OPTION value="Left hand grip">Left hand grip</OPTION>
+			<OPTION value="all">Select All</OPTION>
+		</SELECT>
+		was
+		<INPUT type="text" id="up" value="" size="2" />% 
+		of
+		<INPUT type="text" id="unorm" value=" normal" />
+		<SELECT id="undp">
+			<OPTION value="appeared to be painless">Appeared Painless</OPTION>
+			<OPTION value="appeared to cause discomfort">Caused Discomfort</OPTION>
+			<OPTION value="appeared to cause pain">Caused Pain</OPTION>
+		</SELECT>
+	</TD>
+</TR>
+<TR>
+	<TD colspan="1" align="center"><INPUT type="button" value="Add" onClick="addiv('ulmb','up','unorm','undp','cu','ub','u')" /></TD>
+</TR>
+</TABLE>
+
+<DIV id="ub" style="border-style:solid;color:#48D"> <H3>Upper Limbs</H3> </DIV>
+
+
+<b>Back</b>
+<TABLE align="center" border="1">
+	<TR>
+		<TD>
+			<SELECT id="bck" multiple="true">
+				<OPTION value="Back flexion">Back flexion</OPTION>
+				<OPTION value="Back extension">Back extension</OPTION>
+				<OPTION value="Right straight leg raise">Right straight leg raise</OPTION>
+				<OPTION value="Left straight leg raise">Left straight leg raise</OPTION>
+				<OPTION value="all">Select All</OPTION>
+			</SELECT>
+			was
+			<INPUT type="text" id="bp" value="" size="2" />% 
+			of
+			<INPUT type="text" id="bnorm" value=" normal" />
+			<SELECT id="bndp">
+				<OPTION value="appeared to be painless">Appeared Painless</OPTION>
+				<OPTION value="appeared to cause discomfort">Caused Discomfort</OPTION>
+				<OPTION value="appeared to cause pain">Caused Pain</OPTION>
+			</SELECT>
+		</TD>
+	</TR>
+	<TR>
+		<TD colspan="1" align="center"><INPUT type="button" value="Add" onClick="addiv('bck','bp','bnorm','bndp','cb','bk','b')" /></TD>
+	</TR>
+</TABLE>
+
+<DIV id="bk" style="border-style:solid;color:#48D"> <H3>Back</H3> </DIV>
+
+
+<b>Lower Limbs</b>
+<TABLE align="center" border="1">
+	<TR>
+		<TD>
+			<SELECT id="llmb" multiple="true">
+				<OPTION value="Right hip movement">Right hip movement</OPTION>
+				<OPTION value="Left hip movement">Left hip movement</OPTION>
+				<OPTION value="Right knee movement">Right knee movement</OPTION>
+				<OPTION value="Left knee movement">Left knee movement</OPTION>
+				<OPTION value="Right ankle movement">Right ankle movementt</OPTION>
+				<OPTION value="Left ankle movement">Left ankle movement</OPTION>
+				<OPTION value="Squat and rise">Squat and rise</OPTION>
+				<OPTION value="Stand on tiptoes">Stand on tiptoes</OPTION>
+				<OPTION value="all">Select All</OPTION>
+			</SELECT>
+			was
+			<INPUT type="text" id="lp" value="" size="2" />% 
+			of
+			<INPUT type="text" id="lnorm" value=" normal" />
+			<SELECT id="lndp">
+				<OPTION value="appeared to be painless">Appeared Painless</OPTION>
+				<OPTION value="appeared to cause discomfort">Caused Discomfort</OPTION>
+				<OPTION value="appeared to cause pain">Caused Pain</OPTION>
+			</SELECT>
+		</TD>
+	</TR>
+	<TR>
+		<TD colspan="1" align="center"><INPUT type="button" value="Add" onClick="addiv('llmb','lp','lnorm','lndp','cl','ls','l')" /></TD>
+	</TR>
+</TABLE>
+
+<DIV id="ls" style="border-style:solid;color:#48D"> <H3>Lower Limbs</H3> </DIV>
+
+<INPUT type="submit" value="Submit">
+
+</DIV>
+
+<?
+  }
+?>

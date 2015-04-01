@@ -1,0 +1,54 @@
+body
+{
+	background-color:#c5dbec;
+	background-image:url('../images/bgs.png');
+/* 	background-repeat:repeat-x; */
+}
+
+div
+{
+	background-image:url('../images/bg.png');
+	background-repeat:no-repeat;
+	background-color:#c5dbec;
+}
+
+.a
+{
+	background-image:url('../images/btn.png');
+	height:30px;
+	color:#fff;
+	cursor : pointer;
+	width : 145px;
+}
+
+div#acr
+{
+	visibility:hidden;
+	z-index:2;
+}
+
+div#admin
+{
+	width:700px;
+	margin-left:27%;
+	margin-right:27%;
+	position:relative;
+	height:1310px;
+	visibility:hidden;
+}
+
+div#rep
+{
+	width:92%;
+	margin-left:3%;
+	margin-right:3%;
+	position:relative;
+	top:-1310px;
+/* 	height:1310px; */
+}
+
+a
+{
+	color:#fff;
+	margin-top:5px;
+}

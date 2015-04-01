@@ -1,0 +1,10 @@
+.cas
+{
+	visibility : hidden;
+	position:absolute;
+	left:0px; top:201px;
+	width:100%;
+	height:90%;
+	background-image:url('../templates/aks2.png');
+	z-index:2
+}

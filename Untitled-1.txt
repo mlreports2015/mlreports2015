@@ -1,0 +1,635 @@
+-- phpMyAdmin SQL Dump
+-- version 3.2.0.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Feb 13, 2010 at 12:58 PM
+-- Server version: 5.1.36
+-- PHP Version: 5.2.11
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `mlreport_mlrbt`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `about`
+--
+
+CREATE TABLE IF NOT EXISTS `about` (
+  `org` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `about` text NOT NULL,
+  `title` varchar(5) NOT NULL,
+  `fname` varchar(30) NOT NULL,
+  `lname` varchar(30) NOT NULL,
+  `qualif` varchar(200) NOT NULL,
+  `signat` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accid`
+--
+
+CREATE TABLE IF NOT EXISTS `accid` (
+  `id` int(11) NOT NULL,
+  `accid` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accomp`
+--
+
+CREATE TABLE IF NOT EXISTS `accomp` (
+  `cid` int(11) NOT NULL,
+  `accomp` text NOT NULL,
+  `org` varchar(20) NOT NULL,
+  `aby` varchar(15) NOT NULL,
+  `aln` varchar(30) NOT NULL,
+  `afn` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `agency`
+--
+
+CREATE TABLE IF NOT EXISTS `agency` (
+  `aid` int(11) NOT NULL AUTO_INCREMENT,
+  `an` varchar(50) NOT NULL COMMENT 'agency name',
+  `aa` varchar(80) NOT NULL COMMENT 'agency address',
+  `at` varchar(30) NOT NULL COMMENT 'agency city',
+  `ap` varchar(9) NOT NULL COMMENT 'agency postcode',
+  `ac` varchar(20) NOT NULL COMMENT 'agency contact',
+  `latlong` varchar(100) NOT NULL,
+  `org` varchar(30) NOT NULL COMMENT 'Organization',
+  `lnm` varchar(30) NOT NULL COMMENT 'Login Name',
+  `af` varchar(20) NOT NULL COMMENT 'agency fax',
+  `ae` varchar(40) NOT NULL COMMENT 'agency email',
+  PRIMARY KEY (`aid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `app`
+--
+
+CREATE TABLE IF NOT EXISTS `app` (
+  `org` varchar(20) NOT NULL,
+  `dr` varchar(30) NOT NULL,
+  `stime` varchar(20) NOT NULL,
+  `etime` varchar(20) NOT NULL,
+  `apptm` varchar(20) NOT NULL,
+  `dt` date NOT NULL,
+  `venue` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appoint`
+--
+
+CREATE TABLE IF NOT EXISTS `appoint` (
+  `org` varchar(20) NOT NULL,
+  `id` int(11) NOT NULL,
+  `dt` date NOT NULL,
+  `tm` varchar(20) NOT NULL,
+  `reason` text NOT NULL,
+  `dr` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `a_login`
+--
+
+CREATE TABLE IF NOT EXISTS `a_login` (
+  `lnm` varchar(30) NOT NULL,
+  `pwd` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `back`
+--
+
+CREATE TABLE IF NOT EXISTS `back` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booki`
+--
+
+CREATE TABLE IF NOT EXISTS `booki` (
+  `cid` int(11) NOT NULL,
+  `bi` varchar(100) NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cclist`
+--
+
+CREATE TABLE IF NOT EXISTS `cclist` (
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `cn` varchar(50) NOT NULL COMMENT 'clinic name',
+  `ca` varchar(80) NOT NULL COMMENT 'clinic  address',
+  `ct` varchar(30) NOT NULL COMMENT 'clinic city',
+  `cp` varchar(9) NOT NULL COMMENT 'clinic postcode',
+  `cc` varchar(20) NOT NULL COMMENT 'clinic contact',
+  `latlong` varchar(100) NOT NULL,
+  `org` varchar(30) NOT NULL COMMENT 'Organization',
+  `lnm` varchar(30) NOT NULL COMMENT 'Login Name',
+  `fax` varchar(20) NOT NULL,
+  `ce` varchar(40) NOT NULL COMMENT 'clinic email',
+  PRIMARY KEY (`cid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=154 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `claimant`
+--
+
+CREATE TABLE IF NOT EXISTS `claimant` (
+  `cid` int(11) NOT NULL,
+  `org` varchar(20) NOT NULL,
+  `ct` varchar(8) NOT NULL,
+  `cfn` varchar(50) NOT NULL,
+  `cln` varchar(50) NOT NULL,
+  `cdb` date NOT NULL,
+  `emp` varchar(30) DEFAULT NULL,
+  `cda` date NOT NULL,
+  `cde` date NOT NULL,
+  `ca1` varchar(40) NOT NULL,
+  `ca2` varchar(40) NOT NULL,
+  `cp` varchar(9) NOT NULL,
+  `cc1` varchar(20) NOT NULL,
+  `cc2` varchar(20) NOT NULL,
+  `ce` varchar(50) NOT NULL,
+  `cage` int(11) NOT NULL,
+  `cageref` varchar(30) NOT NULL,
+  `csol` int(11) NOT NULL,
+  `csolref` varchar(50) NOT NULL,
+  `gen` varchar(1) NOT NULL,
+  `clid` int(11) NOT NULL,
+  `stat` varchar(2) NOT NULL,
+  `doc` varchar(30) NOT NULL,
+  `ll` varchar(50) NOT NULL,
+  `cty` varchar(40) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comp`
+--
+
+CREATE TABLE IF NOT EXISTS `comp` (
+  `id` int(11) NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dlive`
+--
+
+CREATE TABLE IF NOT EXISTS `dlive` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `domh`
+--
+
+CREATE TABLE IF NOT EXISTS `domh` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `eff`
+--
+
+CREATE TABLE IF NOT EXISTS `eff` (
+  `id` int(11) NOT NULL,
+  `tp` varchar(1) NOT NULL,
+  `prob` varchar(50) NOT NULL,
+  `stat` varchar(14) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emp`
+--
+
+CREATE TABLE IF NOT EXISTS `emp` (
+  `id` int(11) NOT NULL,
+  `msg1` text NOT NULL,
+  `org` varchar(20) NOT NULL,
+  `num` int(11) NOT NULL,
+  `ind` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `genap`
+--
+
+CREATE TABLE IF NOT EXISTS `genap` (
+  `id` int(11) NOT NULL,
+  `msg1` text NOT NULL,
+  `msg2` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hcirc`
+--
+
+CREATE TABLE IF NOT EXISTS `hcirc` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `idchk`
+--
+
+CREATE TABLE IF NOT EXISTS `idchk` (
+  `cid` int(11) NOT NULL,
+  `chk` varchar(20) NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ident`
+--
+
+CREATE TABLE IF NOT EXISTS `ident` (
+  `cid` int(11) NOT NULL,
+  `chk` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inves`
+--
+
+CREATE TABLE IF NOT EXISTS `inves` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `iwse`
+--
+
+CREATE TABLE IF NOT EXISTS `iwse` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job`
+--
+
+CREATE TABLE IF NOT EXISTS `job` (
+  `id` int(11) NOT NULL,
+  `jrest` text,
+  `jabs` text,
+  `mpas` text,
+  `mmpast` text,
+  `ltef` text,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE IF NOT EXISTS `login` (
+  `org` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `pwd` varchar(20) NOT NULL,
+  `stat` varchar(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lower`
+--
+
+CREATE TABLE IF NOT EXISTS `lower` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menh`
+--
+
+CREATE TABLE IF NOT EXISTS `menh` (
+  `id` int(11) NOT NULL,
+  `msg1` text NOT NULL,
+  `msg2` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mreco2`
+--
+
+CREATE TABLE IF NOT EXISTS `mreco2` (
+  `id` int(11) NOT NULL,
+  `org` varchar(50) NOT NULL,
+  `mid` int(11) NOT NULL,
+  `txt` text NOT NULL,
+  `ord` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mrecs`
+--
+
+CREATE TABLE IF NOT EXISTS `mrecs` (
+  `id` int(11) NOT NULL,
+  `org` varchar(20) NOT NULL,
+  `title` varchar(70) NOT NULL,
+  `mid` int(11) NOT NULL AUTO_INCREMENT,
+  `rel` varchar(60) NOT NULL,
+  PRIMARY KEY (`mid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mreps`
+--
+
+CREATE TABLE IF NOT EXISTS `mreps` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `neck`
+--
+
+CREATE TABLE IF NOT EXISTS `neck` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pmh`
+--
+
+CREATE TABLE IF NOT EXISTS `pmh` (
+  `id` int(11) NOT NULL,
+  `hist` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prog`
+--
+
+CREATE TABLE IF NOT EXISTS `prog` (
+  `id` int(11) NOT NULL,
+  `prog` text,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qualif`
+--
+
+CREATE TABLE IF NOT EXISTS `qualif` (
+  `org` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `ord` int(11) NOT NULL,
+  `qualif` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `repgen`
+--
+
+CREATE TABLE IF NOT EXISTS `repgen` (
+  `cid` varchar(30) NOT NULL,
+  `org` varchar(30) NOT NULL,
+  `num` int(3) NOT NULL,
+  `dt` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shist`
+--
+
+CREATE TABLE IF NOT EXISTS `shist` (
+  `id` int(11) NOT NULL,
+  `h` text,
+  `inj` text,
+  `treat` text,
+  `hlyf` text,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shoulder`
+--
+
+CREATE TABLE IF NOT EXISTS `shoulder` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `soi`
+--
+
+CREATE TABLE IF NOT EXISTS `soi` (
+  `cid` int(11) NOT NULL,
+  `chk` varchar(1000) NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `solicitor`
+--
+
+CREATE TABLE IF NOT EXISTS `solicitor` (
+  `sid` int(11) NOT NULL AUTO_INCREMENT,
+  `sn` varchar(50) NOT NULL COMMENT 'sol name',
+  `sa` varchar(80) NOT NULL COMMENT 'sol address',
+  `st` varchar(30) NOT NULL COMMENT 'sol city',
+  `sp` varchar(9) NOT NULL COMMENT 'sol postcode',
+  `sc` varchar(20) NOT NULL COMMENT 'sol contact',
+  `latlong` varchar(100) NOT NULL,
+  `org` varchar(30) NOT NULL COMMENT 'Organization',
+  `lnm` varchar(30) NOT NULL COMMENT 'Login Name',
+  `sf` varchar(20) NOT NULL COMMENT 'sol fax',
+  `se` varchar(40) NOT NULL COMMENT 'sol email',
+  PRIMARY KEY (`sid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stat`
+--
+
+CREATE TABLE IF NOT EXISTS `stat` (
+  `org` varchar(20) NOT NULL,
+  `id` int(11) NOT NULL,
+  `dt` date NOT NULL,
+  `tm` varchar(20) NOT NULL,
+  `stat` int(11) NOT NULL,
+  `dr` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thorax`
+--
+
+CREATE TABLE IF NOT EXISTS `thorax` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `travel`
+--
+
+CREATE TABLE IF NOT EXISTS `travel` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `treat`
+--
+
+CREATE TABLE IF NOT EXISTS `treat` (
+  `id` int(11) NOT NULL,
+  `stat` varchar(14) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `upper`
+--
+
+CREATE TABLE IF NOT EXISTS `upper` (
+  `id` int(11) NOT NULL,
+  `msg` text NOT NULL,
+  `org` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `fName` varchar(30) NOT NULL,
+  `lName` varchar(30) NOT NULL,
+  `stat` varchar(50) NOT NULL,
+  `uName` varchar(30) NOT NULL,
+  `tel` varchar(20) NOT NULL,
+  `mob` varchar(30) NOT NULL,
+  `peml` varchar(50) NOT NULL,
+  `weml` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;

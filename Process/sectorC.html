@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+
+</head>
+<body>
+<script language="javascript" >
+function editing(e){
+
+document.getElementById(e.target.id).setAttribute('edited','true');
+
+alert(document.getElementById(e.target.id).getAttribute('edited'));
+
+}
+
+function checkedit(){
+
+  var checks = document.getElementsByTagName('div')
+  var checksNo = checks.length;
+  
+  alert(checksNo);
+  
+  for(var i=0; i < checksNo-1; i++){
+	
+	if(checks.item(i).getAttribute('edited') == 'true'){
+	
+		alert(checks.item(i).innerHTML + ' '+checks.item(i).getAttribute('id'));
+	
+	}
+	
+	
+  }
+
+}
+
+
+</script>
+<table width='98%' cellpadding="8px" style="font-family:Arial, Helvetica, sans-serif;border:1px solid #CCC;padding:10px;border-radius:6px;box-shadow: 5px 7px 7px 0px #f1e9b5;">
+<tr>
+<td style="background-color:#77a9c9;font-weight:bold;font-size:20px;">
+Section C 
+</td>
+</tr>
+<tr>
+<td>
+<h3>C(i) Employment Position/Education</h3>
+</td>
+<tr>
+<td>
+<b><u>Current Status</u></b><br/>
+<div contenteditable='true' id="emp" onclick="editing(event)">
+[emp] <br/>
+</div>
+<b><u>Future Prospects</u></b><br/>
+<div contenteditable='true' id="future" onclick="editing(event)">
+[job] <br/>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<h3>C(ii) Consequential effects</h3>
+</td>
+</tr>
+<tr>
+<td>
+	<b><u>Home Circumstances:</u></b><br/>
+<div contenteditable='true' id="hcirc" onclick="editing(event)" >  
+[hcirc] <br/>
+</div>
+<b><u>Travel:</u></b><br/>
+<div contenteditable='true' id="travel">
+[trvl]
+</div><br/>
+<b><u>Daily Living:</u></b><br/>
+<div contenteditable='true' id='dlivin' onclick="editing(event)">
+Mr. Celik reports that since the accident: <br/>
+• He did not report any problems in his daily life. [dlivin]
+</div>
+
+</td>
+</tr>
+</table>
+
+
+</body>
+</html>

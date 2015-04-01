@@ -1,0 +1,149 @@
+<?
+session_start();
+
+include "inc.php";
+
+
+if (!isset($_SESSION['id']))
+{
+	rdrctr("Login Details Incorrect","index.html");
+}
+else
+{
+include "dcon.php";
+?>
+
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+
+<?
+echo "<link href=\"CSS/eff.css\" rel=\"stylesheet\" type=\"text/css\">
+	<script language=\"javaScript\" type=\"text/javascript\" src=\"Scripts/treat.js\"></script>
+	<link href=\"CSS/calender.css\" rel=\"stylesheet\" type=\"text/css\">
+	<script language=\"javaScript\" type=\"text/javascript\" src=\"Scripts/calender_date_picker.js\"></script>";
+?>
+
+</HEAD>
+
+<BODY>
+
+<FORM name="frm" method="POST" action="Process/treat.php">
+
+<input type="hidden" value="0" name="tv" id="theValue" />
+
+<input type="hidden" value="<? $id=$_GET['cid']; echo $id;?>" name="id" />
+
+<DIV align="center">
+
+<DIV align="center">
+
+<H1>Intial Treamtment</H1>
+
+<SELECT name="gc">
+	<OPTION value="got out of the car unaided">Got out of the car unaided</OPTION>
+	<OPTION value="could not get out of the car unaided">Could not get out of the car unaided</OPTION>
+</SELECT>
+
+<TABLE border="1">
+	<TR>
+		<TD>Treatment</TD>
+		<TD>
+			<SELECT id="itr">
+				<OPTION value="did not recieve any treatment">None</OPTION>
+				<OPTION value="recieved first aid">first aid</OPTION>
+			</SELECT>
+		</TD>
+		<TD>
+			<SELECT id="ith">
+				<OPTION value="exchanged details">exchanged details</OPTION>
+				<OPTION value="exchanged details after police came">exchanged details after police came</OPTION>
+				<OPTION value="">none</OPTION>
+			</SELECT>
+		</TD>
+		<TD>
+			<SELECT id="iaf">
+				<OPTION value="continued">continued</OPTION>
+				<OPTION value="got a lift">got a lift</OPTION>
+				<OPTION value="took a taxi">took a taxi</OPTION>
+			</SELECT>
+		</TD>
+		<TD>
+			<SELECT id="ide">
+				<OPTION value="home">home</OPTION>
+				<OPTION value="to work">work</OPTION>
+				<OPTION value="to the hospital">hospital</OPTION>
+				<OPTION value="to casualty">casualty</OPTION>
+			</SELECT>
+		</TD>
+	</TR>
+	<?
+	  $s="select gen from claimant where cid=$id";
+	  $q=mysql_query($s);
+	  $r=mysql_fetch_array($q);
+	  
+	  $g='';
+	  
+	  if ($r['gen']=='m')
+	  	$g='He';
+	  else
+	  	$g='She';
+	?>
+	<TR><TD colspan="5" align="center"><INPUT type="button" value="Add" onclick="addinit('<?echo $g?>');"></TD></TR>
+</TABLE>
+
+<TEXTAREA id="itf" name="itf" cols="100"></TEXTAREA>
+
+
+<DIV align="center">
+
+<H1>Later Treatment</H1>
+
+<TABLE border="1">
+	<TR>
+		<TD>
+			<SELECT id="ltp">
+				<OPTION value="Attended casualty">casualty</OPTION>
+				<OPTION value="Began taking over the counter">OTC</OPTION>
+				<OPTION value="Consulted GP">GP</OPTION>
+			</SELECT>
+		</TD>
+		<TD>
+			<INPUT type="text" id="ltl" size="3" /> 
+			<SELECT name="ld" id="ld">
+				<OPTION value="days">days</OPTION>
+				<OPTION value="weeks">weeks</OPTION>
+				<OPTION value="months">months</OPTION>
+				<OPTION value="years">years</OPTION>
+			</SELECT> 
+			later
+		</TD>
+		<TD>
+			<SELECT id="ltr" onclick="ltroo();">
+				<OPTION value="painkillers">painkillers</OPTION>
+				<OPTION value="painkillers and to stay active">painkillers and staying active</OPTION>
+				<Option value='44'>44</Option><OPTION value="other">other</OPTION>
+			</SELECT>
+			<br />
+			<INPUT type="text" name="ltro" id="ltro" disabled="true" size="40">
+		</TD>
+	</TR>
+	
+	<TR><TD colspan="3" align="center"><INPUT type="button" value="Add" onclick="addlater();"></TD></TR>
+</TABLE>
+
+</DIV>
+
+<DIV id=nu> </DIV>
+
+<INPUT type="submit" value="Submit">
+
+</DIV>
+
+</BODY>
+
+</HTML>
+
+<?
+}
+?>

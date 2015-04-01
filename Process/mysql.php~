@@ -1,0 +1,115 @@
+<?
+include "../dcon.php";
+
+session_start();
+
+$o=$_SESSION['o'];
+
+function sel1($tnm,$id)
+{
+	session_start();
+	$o=$_SESSION['o'];
+	$q=mysql_query("select * from $tnm where cid=$id and org='$o'");
+	return mysql_fetch_array($q);
+}
+
+function sel4($tnm,$id)
+{
+	session_start();
+	$o=$_SESSION['o'];
+	$q=mysql_query("select * from $tnm where id=$id and org='$o'");
+	return mysql_fetch_array($q);
+}
+
+function age($tnm,$id)
+{
+	$q=mysql_query("select * from $tnm where aid='$id'");
+	return mysql_fetch_array($q);
+}
+
+function sel5($tnm,$id)
+{
+	session_start();
+	$o=$_SESSION['o'];
+
+	$s="select * from $tnm where id='$id' and org='$o'";
+// echo "$s ";
+	$q=mysql_query($s);
+// echo "$q <br>";
+	$x='';
+	$i=0;
+	$r=mysql_fetch_row($q);
+	
+	if ($r!=null)
+	foreach($r as $z)
+	{
+		if($i==0)
+			$i=$i;
+		else if (strcmp($z,'')!=false)
+			$x=$x."• ".$z."<br />";
+		$i=$i+1;
+	}
+	return $x;
+}
+
+function sel2($tnm,$id)
+{
+	session_start();
+	$o=$_SESSION['o'];
+
+	$s="select * from $tnm where id='$id' and org='$o'";
+// echo "$s ";
+	$q=mysql_query($s);
+// echo "$q <br>";
+	$x='';
+	$i=0;
+	while ($r=mysql_fetch_row($q))
+	{
+		if (strcmp($r[1],'')!=0)
+			$x=$x."• ".$r[1]."<br />";
+	}
+	return $x;
+}
+
+function sel6($tnm,$id)
+{
+	session_start();
+	$o=$_SESSION['o'];
+
+	$s="select * from $tnm where cid='$id' and org='$o'";
+// echo "$s ";
+	$q=mysql_query($s);
+// echo "$q <br>";
+	$x='';
+	$i=0;
+	while ($r=mysql_fetch_row($q))
+	{
+		if (strcmp($r[1],'')!=false)
+			$x=$x.$r[1]."<br />";
+	}
+	return $x;
+}
+
+function sel3($tnm,$id,$n)
+{
+	session_start();
+	$o=$_SESSION['o'];
+
+	$q=mysql_query("select * from $tnm where id='$id' and org='$o'");
+	$x='';
+	$i=0;
+	while ($r=mysql_fetch_row($q))
+	{
+// rdrctr($r[1,"repgen.php?cid=9");
+		if (strcmp($r[$n],'')!=false)
+			$x=$x."• ".$r[$n]."<br />";
+	}
+	return $x;
+}
+
+function hdt($d)
+{
+	return date('d-m-Y',strtotime($d));
+}
+
+?>

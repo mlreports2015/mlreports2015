@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>mlReports Login</title>
+
+<style>
+
+ul.topnavi {
+	
+	width:700px;
+	height:40px;
+	padding:0px;
+	margin:0px;
+	postion:fixed;
+	margin-top:16px;
+	background-color:#77a9c9;
+	list-style:none;
+}
+
+ul.topnavi li{
+	
+	width:120px;
+	height:40px;
+	padding:0px;
+	margin:0px;
+	float:left;
+}
+
+
+a.li:link {
+	color:#FFF;
+	position:relative;
+	left:32px;
+	text-decoration:none;
+	color: #FFF;
+}
+
+a.li:visited {
+	color:#FFF;
+	position:relative;
+	left:32px;
+	text-decoration:none;
+	color: #FFF;
+}
+
+a.li:hover {
+	color: #666;
+	font-weight:bold;
+}
+
+a.li:active {
+	color: #000;
+}
+
+
+a.l:link {
+	color:#FFF;
+	text-decoration:none;
+	color: #FFF;
+}
+
+a.l:visited {
+	color:#FFF;
+	text-decoration:none;
+	color: #FFF;
+}
+
+a.l:hover {
+	color: #000;
+}
+
+a.l:active {
+	color: #FF0000;
+}
+
+
+li
+{
+	font-size:16px;
+	font-weight:200;
+}
+
+
+
+a.lx:link {
+	color:#000;
+}
+
+a.lx:visited {
+	color:#000;
+	text-decoration:none;
+}
+
+a.lx:hover {
+	color: #A61515;
+	text-decoration:none;
+}
+
+a.lx:active {
+	color: #000;
+}
+
+
+</style>
+
+<script type="text/javascript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+
+</script>
+
+
+<script type="text/javascript" language="javascript">
+
+//alert(navigator.appName);
+//alert(navigator.appVersion);
+
+var BrowserDetect = {
+	init: function () {
+		this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+		this.version = this.searchVersion(navigator.userAgent)
+			|| this.searchVersion(navigator.appVersion)
+			|| "an unknown version";
+		this.OS = this.searchString(this.dataOS) || "an unknown OS";
+	},
+	searchString: function (data) {
+		for (var i=0;i<data.length;i++)	{
+			var dataString = data[i].string;
+			var dataProp = data[i].prop;
+			this.versionSearchString = data[i].versionSearch || data[i].identity;
+			if (dataString) {
+				if (dataString.indexOf(data[i].subString) != -1)
+					return data[i].identity;
+			}
+			else if (dataProp)
+				return data[i].identity;
+		}
+	},
+	searchVersion: function (dataString) {
+		var index = dataString.indexOf(this.versionSearchString);
+		if (index == -1) return;
+		return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
+	},
+	dataBrowser: [
+		{
+			string: navigator.userAgent,
+			subString: "Chrome",
+			identity: "Chrome"
+		},
+		{ 	string: navigator.userAgent,
+			subString: "OmniWeb",
+			versionSearch: "OmniWeb/",
+			identity: "OmniWeb"
+		},
+		{
+			string: navigator.vendor,
+			subString: "Apple",
+			identity: "Safari",
+			versionSearch: "Version"
+		},
+		{
+			prop: window.opera,
+			identity: "Opera"
+		},
+		{
+			string: navigator.vendor,
+			subString: "iCab",
+			identity: "iCab"
+		},
+		{
+			string: navigator.vendor,
+			subString: "KDE",
+			identity: "Konqueror"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "Firefox",
+			identity: "Firefox"
+		},
+		{
+			string: navigator.vendor,
+			subString: "Camino",
+			identity: "Camino"
+		},
+		{		// for newer Netscapes (6+)
+			string: navigator.userAgent,
+			subString: "Netscape",
+			identity: "Netscape"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "MSIE",
+			identity: "Explorer",
+			versionSearch: "MSIE"
+		},
+		{
+			string: navigator.userAgent,
+			subString: "Gecko",
+			identity: "Mozilla",
+			versionSearch: "rv"
+		},
+		{ 		// for older Netscapes (4-)
+			string: navigator.userAgent,
+			subString: "Mozilla",
+			identity: "Netscape",
+			versionSearch: "Mozilla"
+		}
+	],
+	dataOS : [
+		{
+			string: navigator.platform,
+			subString: "Win",
+			identity: "Windows"
+		},
+		{
+			string: navigator.platform,
+			subString: "Mac",
+			identity: "Mac"
+		},
+		{
+			   string: navigator.userAgent,
+			   subString: "iPhone",
+			   identity: "iPhone/iPod"
+	    },
+		{
+			string: navigator.platform,
+			subString: "Linux",
+			identity: "Linux"
+		}
+	]
+
+};
+BrowserDetect.init();
+
+</script>
+
+<script>
+
+function browserChk()
+{
+if (BrowserDetect.version==7 && BrowserDetect.browser=='Explorer')
+{
+	document.getElementById('bodd').style.height='15px';
+	document.getElementById('cont').style.top='0px';
+	document.getElementById('cont').style.left='100px';
+	document.getElementById('cont2').style.top='-450px';
+	document.getElementById('footy').style.top='-60px';
+	
+	if (confirm('You are currently not using the latest version of Microsoft Internet Explorer, Upgrade?(from official Microsoft Site)'))
+	{
+		window.location='http://www.microsoft.com/upgrade/';
+	}
+}
+else if (BrowserDetect.browser=='Chrome')
+{
+	if (confirm('Please switch to Firefox 3+, Internet Explorer 7+ or Opera 9.5+! Your browser is not fully supported at the moment. We are sorry for the inconvenience')==true)
+	{
+		if(window.name!='prime')
+		{
+			window.name='prime';
+			window.open(window.location.href, 'prime')
+		}
+		
+		window.close();
+	}
+}
+}
+
+</script>
+
+</head>
+
+
+<body style="margin-top:0px; font-family:Arial, Helvetica, sans-serif;background-color:#cfe2ee;" topmargin="0" marginheight="0" onload="MM_preloadImages('image/aboutH.png','image/supportH.png','image/contactH.png','image/homeH.png','image/serviceH.png');browserChk();">
+
+
+<div id="redRound" style="position:fixed; width:99%; height:60px;color:#fff;background-color:#77a9c9;border-radius:0px 0px 8px 8px;margin:0px;margin-top:-20px;" align="center">
+
+<div style="width:260px;height:40px;padding:0px;float:right;margin-right:40px;margin-top:5px;"><img src="images/search_ic.png" height="27px" style="padding:0px 3px;margin:0px;" title="search" />
+   <input type="text" value="123" style="position:absolute;border-radius:6px;background-color:#cfe2ee;height:25px;width:130px;padding:0px;margin:0px;" onfocus="this.style.backgroundColor='#fff';" onblur="this.style.backgroundColor='#cfe2ee';"  title="quick search"/>
+</div>
+
+<ul class="topnavi">
+<li>
+HOME
+</li>
+<li>
+ABOUT US
+</li>
+<li>
+REGISTER
+</li>
+<li>
+LOGIN
+</li>
+</ul>
+
+
+
+
+</div>
+
+
+<div align="center" style="position:relative;height:100px;top:15px;">
+<div style="width:1024px;height:25px;margin-top:15px; ">
+
+
+
+
+</div>
+<center>
+<div style="width:1024px;height:32px;border-bottom:1px solid #FFF;" align='center'>
+<!--<div style="width:200px;height:25px;padding:0px;float:right;">
+   <input type="text" value="123" style="border-radius:6px;background-color:#cfe2ee;height:25px;width:170px;padding:0px;margin:0px;" onfocus="this.style.backgroundColor='#fff';" onblur="this.style.backgroundColor='#cfe2ee';"  title="quick search"/>
+</div>
+<div style="width:80px;height:25px;padding:0px;margin:0px;float:right;">
+<img src="images/menuIcon.png" height="27px" style="padding:0px 3px;margin:0px;" title="menu"/>
+<img src="images/search_ic.png" height="27px" style="padding:0px 3px;margin:0px;" title="search" />
+</div>-->
+
+
+</div>
+</center>
+
+
+
+
+
+
+
+
+
+
+<div align='middle'>
+
+
+
+
+<div id="cont2" style="width:80%;height:380px;margin-top:50px;" >
+
+
+
+<FORM action="index.php" method="POST" style='padding-top:35px;'>
+
+<div style="height:300px;width:450px;color:#A61515;background-color:#77a9c9;border:solid 1px #FFF;opacity:0.8;padding:0px;margin:0px;border-radius:6px;box-shadow:6px 6px 5px #888;">
+<div align="center" style="background-color:#FFF;width:100%;height:60px;color:#A61515;padding-top:30px;font-weight:bold;border-radius:6px 6px 0px 0px" >
+<H2>LOGIN</H2>
+</div>
+<TABLE style="width:100%;color:#FFF;" cellpadding="8px" cellspacing="6px" align="center">
+<TR align="center">
+<TD>Organization:</TD>
+<TD><INPUT type="text" name="org" id='org' title="organisation" style="border-radius:6px;width:200px;height:20px;" onfocus="document.getElementById('org').style.borderStyle='solid';document.getElementById('org').style.borderColor='#666';" onblur="document.getElementById('org').style.borderStyle='';document.getElementById('org').style.borderColor='#CCC'" /></TD>
+</TR>
+
+<TR align="center">
+<TD>Login name:</TD>
+<TD><INPUT type="text" name="lid" id="lid" title="user_id" style="border-radius:6px;width:200px;height:20px;" onfocus="document.getElementById('lid').style.borderStyle='solid';document.getElementById('lid').style.borderColor='#666';" onblur="document.getElementById('lid').style.borderStyle='';document.getElementById('lid').style.borderColor='#CCC'"/></TD>
+</TR>
+
+<TR align="center">
+<TD>Password:</TD>
+<TD><INPUT type="password" name="pwd" id="pwd" title="password" style="border-radius:6px;width:200px;height:20px;" onfocus="document.getElementById('pwd').style.borderStyle='solid';document.getElementById('pwd').style.borderColor='#666';" onblur="document.getElementById('pwd').style.borderStyle='';document.getElementById('pwd').style.borderColor='#CCC'"/></TD>
+</TR>
+
+<TR>
+<TD colspan="2" align="center"><INPUT type="submit" value="Login" style="border-radius:7px;height:35px;width:90px;"/></TD>
+</TR>
+</TABLE>
+</div>
+<br/>
+<div style='width:1200px;'>
+<TABLE style='' width='100%' cellpadding="10px">
+<TR>
+<TD align="center">
+
+<TABLE style='width:430px;'>
+<TR align='center'>
+<TD align="left" ><A class="lx" style="font-size:smallest;color:#666;font-weight:bold;" href='register.html'>Register  Now</A></TD>
+<TD align='left'  ><A class="lx" style="font-size:smallest;color:#666;font-weight:bold;" href='../contact.html'>Contact Us</A></TD>
+</TR>
+</TABLE>
+
+</TD>
+</TR>
+</TABLE>
+</div>
+</FORM>
+
+
+<!--
+<div style="float:right; width:200px; height:200px; background-image:url(image/redR.png); background-repeat:no-repeat; position:relative; top:-350px; right:3px; color:#FFF; padding-top:75px;">
+
+<ul>
+<li style="margin-left:50px; font-size:14px;"><b>Easy to Edit</li><br />
+<li style="font-size:14px; margin-left:15px; margin-top:20px;"><b>Intuitive Interface</li><br />
+<li style="font-size:14px; margin-top:20px;"><b>MS Word Documents</li><br />
+</ul>
+
+</div>-->
+
+</div>
+
+
+
+<div id="footy" style="position:relative; left:-2px;border-top:1px solid #FFF;color:#FFF; height:20px; width:1022px; overflow:hidden;top:100px;">
+
+</div>
+
+
+</div>
+
+
+
+
+
+</body>
+
+
+</html>

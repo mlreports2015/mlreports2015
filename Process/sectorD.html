@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+<body>
+<script language="javascript">
+function editing(e){
+
+document.getElementById(e.target.id).setAttribute('edited','true');
+
+alert(document.getElementById(e.target.id).getAttribute('edited'));
+
+}
+</script>
+
+<table width='98%' cellpadding="8px" style="font-family:Arial, Helvetica, sans-serif;border:1px solid #CCC;padding:10px;border-radius:6px;box-shadow: 5px 7px 7px 0px #f1e9b5;">
+<tr>
+<td style="background-color:#77a9c9;font-weight:bold;font-size:20px;">
+Section D 
+</td>
+</tr>
+<tr>
+<td>
+<h3>D(i) Past Medical History</h3>
+</td>
+</tr>
+<tr>
+<td>
+<div id="pmh" contenteditable="true" onclick="editing(event)" >
+	
+  [pmh]
+    
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<h3>D(iii) Diagnosis opinion and prognosis</h3>
+</td>
+</tr>
+<tr>
+<td>
+<b><u>Summary</u></b>
+</td>
+</tr>
+<tr>
+<td>
+I was able to obtain a good history.
+In my opinion Mr. Celik's injuries were entirely consistent with the account of the accident and  The claimed problems in Mr. Celik's home life are consistent and reasonable. [sum]
+</td>
+</tr>
+<tr>
+<td>
+<b><u>Prognosis</u></b>
+</td>
+</tr>
+<tr>
+<td>
+Taking into account the following prognostic factors, <br/>
+a) Age of the claimant <br/>
+b) Mechanism of the accident <br/>
+c) Onset of the pain <br/>
+d) Examination  <br/>
+</td>
+</tr>
+<tr>
+<td>
+Considering the mechanism of injury and progression of symptoms, it is my opinion that the client sustained soft tissue injury to the cervical, thoracic and Lumbar spine, consistent with Whiplash Associated Disorder. Studies have shown that the rate of recovery of a soft tissue injury to the cervical, thoracic and lumbar spine resulting in a whiplash injury without nerve route compression or bony injury following a road traffic accident is variable. Whiplash injury is defined as a traumatic injury to the soft tissue structures of the spine including muscles, ligaments, intervertebral discs and facet joints due to hyper flexion and hyper extension, rotational injury and transmitted impact from the seat belt.
+
+<div id="progno" contenteditable="true" onclick="editing(event)"><br/>
+<b><u>shock</u></b><br/>
+
+ Suffered from moderate shock . This resolved a week after the indexed accident..
+<br/>
+
+<b><u>upper back pain</u></b><br/>
+
+ The upper back pain is due to a whiplash injury. It is currently causing mild disability. I recommend referral to a physiotherapist for further assessment and treatment. 6 sessions would be appropriate. In my opinion, on the balance of probability, the upper back pain should resolve within 8-12 months of the date of accident. 
+<br/>
+<b><u>neck and shoulders pain</u></b> <br/>
+
+ The neck and shoulders pain is due to a whiplash injury. It is currently causing mild disability. I recommend referral to a physiotherapist for further assessment and treatment. 6 sessions would be appropriate. In my opinion, on the balance of probability, the neck and shoulders pain should resolve within 9-12 months of the date of accident. 
+<br/>
+[progno]
+
+</div>
+
+<br/><b>Further Outlook</b><br/>
+
+If the claim does not recover within the anticipated time scale then a re-examination may be required.<br/>
+
+In my opinion, and on the balance of probabilities, the index accident is responsible for the injuries sustained.<br/>
+
+In my opinion, he will have no long term deformity or problem due to this accident. <br/>
+</td>
+</tr>
+</table>
+
+</body>
+</html>
