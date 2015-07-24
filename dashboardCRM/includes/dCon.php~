@@ -1,0 +1,11 @@
+<?php
+
+	//$conn=mysql_connect("localhost", "root", "") or die(mysql_error());
+        $conn=mysql_connect("localhost", "root", "bismillah") or die(mysql_error());
+	
+	mysql_select_db("mldoc") or die(mysql_error());
+
+	date_default_timezone_set('UTC');
+       // echo date_default_timezone_get();
+
+?>
